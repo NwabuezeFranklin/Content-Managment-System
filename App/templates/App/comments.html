@@ -1,0 +1,24 @@
+
+{% block content %}
+<a href="{% url 'profileList' user.id %}"> View other profiles </a>
+<h3>{{post.message}}</h3>
+<img src="{{post.imageURL}}" />
+
+<br><hr>
+{% if request.user.is_authenticated %}
+        <div class="comment-form">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" name="text" placeholder="Write your comments here">
+            </form>
+        </div>
+        {% endif %}
+
+{% for reply in replies %}
+<div>
+    <small><a href="{% url 'myProfile' user.id %}">{{reply.user}} </a> {{reply.created|timesince}}</small>
+    <p>{{reply.text}}</p>
+    <hr>            
+</div>
+{% endfor %}
+{% endblock %}

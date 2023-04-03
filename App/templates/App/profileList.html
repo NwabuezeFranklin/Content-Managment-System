@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+{% load  static %}
+{% static "images" as baseUrl %}
+<html lang="zxx">
+
+<head>
+	<title>Weblog a Blogging Category Bootstrap responsive WebTemplate | Login :: w3layouts</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="keywords" content="Weblog a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+        <link href="{% static 'css/single.css'%}" rel='stylesheet' type='text/css' />
+	<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
+	<link href="{% static 'css/fontawesome-all.css' %}" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+	    rel="stylesheet">
+</head>
+
+<body>
+	<!--Header-->
+	{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+	<header>
+		<div class="top-bar_sub_w3layouts container-fluid">
+			<div class="row">
+				<div class="col-md-4 logo text-left">
+					<a class="navbar-brand" href="{% url 'home' %}">
+						<i class="fab fa-linode"></i> Weblog</a>
+				</div>
+				<div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+					<h3><span>Welcome Back {{users.username}} </span></h3>
+					
+					<span>
+						<a href="{% url 'myProfile' users.id %}">
+							<i class="far fa-user"></i> Profile </a>
+					</span>
+                
+				</div>
+				<div class="col-md-4 log-icons text-right">
+					<span>
+						<a href="{% url 'logoutUser' %}">
+							<i class="fas fa-arrow-circle-right"></i> Log out </a>
+                        </span>
+
+
+				</div>
+			</div>
+		</div>
+
+		<div class="header_top" id="home">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<button class="navbar-toggler navbar-toggler-right mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+				</button>
+
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'home' %}">Home
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="about.html">About</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+							    aria-expanded="false">
+								Features
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="#"></a>
+								<a class="dropdown-item" href="blog1.html">Standard Blog</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="blog2.html">2 Column Blog</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="blog3.html">3 Column Blog</a>
+
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="contact.html">Contact</a>
+						</li>
+
+					</ul>
+					<form action="{% url 'profileList' users.id %}" method="get" class="form-inline my-2 my-lg-0 header-search">
+						<input class="form-control mr-sm-2" type="text" placeholder="Search here..." name="q" >
+						<button class="btn btn1 my-2 my-sm-0" type="submit">
+							<i class="fas fa-search"></i>
+						</button>
+					</form>
+
+
+
+				</div>
+			</nav>
+
+		</div>
+	</header>
+	<!--//header-->
+<div>
+{% for profiles in profiles %}
+<div>
+<small>
+    {%if request.user == profiles.user %}
+<h3 class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 ">"Your blog is a platform to showcase your unique perspective, creativity, and ideas. So don't hold back, let your words inspire and captivate your readers!" ~ Franklin</h3>
+<a href="{% url 'uploads' profiles.id %}" class="btn btn-primary submit mb-4"> Upload </a> <br>
+
+{% endif %} 
+</small>
+</div>
+{% endfor %}
+</div>
+
+
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <div class="row">
+            <!--left-->
+            <div class="col-lg-8 left-blog-info-w3layouts-agileits text-center">
+
+                <!--//silder-->
+            
+                <div class="blog-girds-sec">
+                    <div class="row">
+                        {% for posts in posts %}
+                        <div class="col-md-6 blog-grid-top">
+                            <div class="b-grid-top">
+                                <div class="blog_info_center_grid">
+                                    <a href="{% url 'comments' posts.user.id posts.id %}">
+                                    <img src="{{baseUrl}}/{{posts.image}}" class="img-fluid" alt="">
+                                    </a>
+                                </div>
+                                <br>
+                                <h6>{{posts.topic}}</h6>
+                            </div>
+                            <ul class="blog-icons">
+                                <li>
+                                    <a href="">
+                                        <i class="far fa-clock"></i>{{posts.created|timesince}} ago </a>
+                                </li>
+                                <li class="mx-2">
+                                    <a href="{% url 'comments' posts.user.id posts.id %}">
+                                        <i class="far fa-comment"></i>{{count}} </a>
+                                </li>
+                            
+                                
+                            </ul>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <!--//left-->
+            <!--right-->
+            <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
+                <div class="right-blog-info text-left">
+                    
+                    
+                    <div class="tech-btm">
+                        <h4>Recent Posts</h4>
+                        {% for p in contents|slice:":8" %}
+                        <div class="blog-grids row mb-3">
+                            <div class="col-md-5 blog-grid-left">
+                                <a href="{% url 'comments' p.user.id p.id %}">
+                                    <img src="{{baseUrl}}/{{p.image}}" class="img-fluid" alt="">
+                                </a>
+                            </div>
+                            <div class="col-md-7 blog-grid-right">
+                                <h5>
+                                    <a href="{% url 'comments' p.user.id p.id %}">{{p.topic}} </a>
+                        
+                                </h5>
+                                <div class="sub-meta">
+                                    {% if request.user == profiles.user %}
+                                    <a href="{% url 'update' profiles.id %}"> Edit </a>
+                                    <a href="{% url 'deleteProfile' profiles.id  %}"> Delete </a>
+                                    {% endif %}
+                                    <span>
+										<a href="{% url 'uploads' p.user.id %}"> by {{p.user.username}} </a><br>
+                                        <i class="far fa-clock"></i> {{p.created|timesince}} ago 
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
+                        
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+			
+            <!--//right-->
+        </div>
+    </div>
+</section>
+<script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
+	<!-- //js -->
+	<!-- desoslide-JavaScript -->
+	<script src="{% static 'js/jquery.desoslide.js' %}"></script>
+	<script>
+		$('#demo1_thumbs').desoSlide({
+			main: {
+				container: '#demo1_main_image',
+				cssClass: 'img-responsive'
+			},
+			effect: 'sideFade',
+			caption: true
+		});
+	</script>
+
+	<!-- requried-jsfiles-for owl -->
+	<script>
+		$(window).load(function () {
+			$("#flexiselDemo1").flexisel({
+				visibleItems: 3,
+				animationSpeed: 1000,
+				autoPlay: true,
+				autoPlaySpeed: 3000,
+				pauseOnHover: true,
+				enableResponsiveBreakpoints: true,
+				responsiveBreakpoints: {
+					portrait: {
+						changePoint: 480,
+						visibleItems: 1
+					},
+					landscape: {
+						changePoint: 640,
+						visibleItems: 2
+					},
+					tablet: {
+						changePoint: 768,
+						visibleItems: 3
+					}
+				}
+			});
+
+		});
+	</script>
+	<script>
+		$(window).load(function () {
+			$("#flexiselDemo2").flexisel({
+				visibleItems: 3,
+				animationSpeed: 1000,
+				autoPlay: true,
+				autoPlaySpeed: 3000,
+				pauseOnHover: true,
+				enableResponsiveBreakpoints: true,
+				responsiveBreakpoints: {
+					portrait: {
+						changePoint: 480,
+						visibleItems: 1
+					},
+					landscape: {
+						changePoint: 640,
+						visibleItems: 2
+					},
+					tablet: {
+						changePoint: 768,
+						visibleItems: 3
+					}
+				}
+			});
+
+		});
+	</script>
+	<script src="{% static 'js/jquery.flexisel.js' %}"></script>
+	<!-- //password-script -->
+	<!--/ start-smoth-scrolling -->
+	<script src="{% static 'js/move-top.js' %}"></script>
+	<script src="{% static 'js/easing.js' %}"></script>
+	<script>
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+				$('html,body').animate({
+					scrollTop: $(this.hash).offset().top
+				}, 900);
+			});
+		});
+	</script>
+	<!--// end-smoth-scrolling -->
+
+	<script>
+		$(document).ready(function () {
+			
+									var defaults = {
+							  			containerID: 'toTop', // fading element id
+										containerHoverID: 'toTopHover', // fading element hover id
+										scrollSpeed: 1200,
+										easingType: 'linear' 
+							 		};
+									
+
+			$().UItoTop({
+				easingType: 'easeOutQuart'
+			});
+
+		});
+	</script>
+	<a href="#home" class="scroll" id="toTop" style="display: block;">
+		<span id="toTopHover" style="opacity: 1;"> </span>
+	</a>
+
+	<!-- //Custom-JavaScript-File-Links -->
+	<script src="{% static 'js/bootstrap.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
