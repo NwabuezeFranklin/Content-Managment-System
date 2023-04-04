@@ -163,7 +163,7 @@ def comments(request, pk, pkr):
         )   
         return redirect('comments', pk = user.id, pkr = post.id,)
         
-    context = {'post': post, 'user': user, 'replies': replies, 'count': count,}
+    context = {'post': post, 'user': user, 'replies': replies, 'count': count, 'profile': profile,}
     return render(request, 'App/comments.html', context, )
 
 

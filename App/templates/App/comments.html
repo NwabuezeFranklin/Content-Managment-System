@@ -1,24 +1,60 @@
 
 {% block content %}
-<a href="{% url 'profileList' user.id %}"> View other profiles </a>
-<h3>{{post.message}}</h3>
-<img src="{{post.imageURL}}" />
+{% include 'navbar.html'%}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Article Page</title>
+</head>
+<body>
+	<div style="display: flex;">
+		<div style="flex: 2; padding-right: 20px;">
+        <img src="{{post.imageURL}}" style="width: 100%;"/>
+		</div>
+		<div style="flex: 3;">
+			<h1 style="font-size: 36px; font-weight: bold;">{{post.topic}}</h1>
+			<p style="font-size: 16px; line-height: 1.5;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, mauris ut lacinia vulputate, ante purus mollis justo, eget ullamcorper nisl odio in turpis. Aliquam ac euismod nisl. Quisque blandit sem ut diam eleifend, eu malesuada est tincidunt. Sed in odio vel ex hendrerit interdum. Curabitur vitae vestibulum ante. Fusce varius odio quis aliquet posuere.</p>
+	
+
+
+<!-- <a href="{% url 'profileList' user.id %}"> View other profiles </a>
+<h3>{{post.topic}}</h3>
+<img src="{{post.imageURL}}" /> -->
 
 <br><hr>
 {% if request.user.is_authenticated %}
-        <div class="comment-form">
+        			<h2 style="font-size: 24px;">Comments</h2>
+
+			<div style="margin-top: 20px;">
+				<form method="POST" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+					<label for="comment">Comment:</label><br>
+        
+					<textarea id="comment" name="text" rows="4" cols="50"></textarea><br><br>
+
+					<input type="submit" value="Submit">
+				</form>
+			</div>
+        <!--<div class="comment-form">
             <form method="POST" action="" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="text" name="text" placeholder="Write your comments here">
             </form>
-        </div>
+        </div> -->
+
         {% endif %}
 
 {% for reply in replies %}
 <div>
-    <small><a href="{% url 'myProfile' user.id %}">{{reply.user}} </a> {{reply.created|timesince}}</small>
+    <small><a href="{% url 'myProfile' user.id %}"> <img src="{{profile.imageURL}}" style="width: 30px; height: 30px; border-radius: 50%;"/> <span style="font-weight: bold;">{{reply.user}}</span> </a> {{reply.created|timesince}}</small>
+
     <p>{{reply.text}}</p>
     <hr>            
 </div>
 {% endfor %}
+</div>
+</div>
+</body>
+</html>
 {% endblock %}
