@@ -8,6 +8,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 
@@ -99,7 +101,7 @@ def myProfile(request, pk):
     context = {'profiles': profiles, 'user': user, 'profile': profile, 'post': post,}
     return render(request, 'App/myProfile.html', context)
     
-
+@login_required(login_url='loginUser')
 def profileList(request,pk):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     
