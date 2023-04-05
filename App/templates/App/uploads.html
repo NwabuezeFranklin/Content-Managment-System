@@ -88,7 +88,7 @@
     <div class="col-md-6 blog-grid-top">
         <div class="b-grid-top">
             <div class="blog_info_center_grid">
-                <a href="{% url 'comments' post.user.id post.id %}">
+                <a href="{% url 'comments' users.id post.user.id post.id %}">
         <img src="{{post.imageURL}}" class="img-fluid" alt="" />
         
     </div>
@@ -103,7 +103,7 @@
             <i class="far fa-clock"></i>{{post.created|timesince}} ago </a>
     </li>
     <li class="mx-2">
-        <a href="{% url 'comments' post.user.id post.id %}">
+        <a href="{% url 'comments' users.id post.user.id post.id %}">
             <i class="far fa-comment"></i> Comments </a>
     </li>
 

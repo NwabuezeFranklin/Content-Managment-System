@@ -50,7 +50,7 @@
 <div>
     <small><a href="{% url 'myProfile' user.id %}"> <img src="{{reply.user.profile.imageURL}}" style="width: 30px; height: 30px; border-radius: 50%;"/> <span style="font-weight: bold;">{{reply.user}}</span> </a> {{reply.created|timesince}}</small>
 
-    <p>{{reply.text}}</p>
+    <p >{{reply.text}}</p>
     <hr>            
 </div>
 {% endfor %}
