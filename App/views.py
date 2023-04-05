@@ -36,7 +36,7 @@ def loginUser(request):
 def logoutUser(request):
     if request.method == 'POST':
         logout(request)
-        messages.success(request, 'User logged out')
+        messages.success(request, 'User logged out successfully')
         return redirect('home')
     context = {}
     return render(request, 'App/logoutUser.html', context)

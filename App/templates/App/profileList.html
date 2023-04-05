@@ -33,12 +33,63 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 	<!--Header-->
 	{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+	<style>
+		.flash-message-container {
+			position: fixed;
+			top: 20%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 999;
+			padding: 20px;
+			background-color: #fff;
+			border: 2px solid #ccc;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+		}
+	
+		.flash-message-container .messages {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+	
+		.flash-message-container .messages li {
+			margin-bottom: 10px;
+			padding: 10px;
+			border: 2px solid #ccc;
+			border-radius: 5px;
+			color: #333;
+		}
+	
+		.flash-message-container .messages li.success {
+			border-color: #4CAF50;
+			color: #4CAF50;
+		}
+	
+		.flash-message-container .messages li.error {
+			border-color: #F44336;
+			color: #F44336;
+		}
+	
+		.flash-message-container .messages li.warning {
+			border-color: #FFC107;
+			color: #FFC107;
+		}
+	
+		.flash-message-container .messages li.info {
+			border-color: #2196F3;
+			color: #2196F3;
+		}
+	</style>
+	
+		<div class="flash-message-container">
+			<ul class="messages">
+				{% for message in messages %}
+					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+	
 
 	<header>
 		<div class="top-bar_sub_w3layouts container-fluid">
