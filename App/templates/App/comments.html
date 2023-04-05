@@ -13,7 +13,7 @@
 		</div>
 		<div style="flex: 3;">
 			<h1 style="font-size: 36px; font-weight: bold;">{{post.topic}}</h1>
-			<p style="font-size: 16px; line-height: 1.5;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, mauris ut lacinia vulputate, ante purus mollis justo, eget ullamcorper nisl odio in turpis. Aliquam ac euismod nisl. Quisque blandit sem ut diam eleifend, eu malesuada est tincidunt. Sed in odio vel ex hendrerit interdum. Curabitur vitae vestibulum ante. Fusce varius odio quis aliquet posuere.</p>
+			<p style="font-size: 16px; line-height: 1.5;">{{post.article}}</p>
 	
 
 
@@ -31,9 +31,10 @@
 
 					<label for="comment">Comment:</label><br>
         
-					<textarea id="comment" name="text" rows="4" cols="50"></textarea><br><br>
+					<textarea id="comment" name="text" rows="4" cols="50"></textarea><br>
 
 					<input type="submit" value="Submit">
+					<br><br>
 				</form>
 			</div>
         <!--<div class="comment-form">

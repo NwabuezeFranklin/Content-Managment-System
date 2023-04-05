@@ -57,6 +57,19 @@ class Comment(models.Model):
     #author = models.CharField(max_length=100)
     text = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
+    updated = models.DateTimeField(auto_now=True, null=True)
     
+    class Meta:
+        ordering = ['-updated', '-created']
+        #ordering = ['updated', 'created'] "this means the last object created will be last, but the similar code not commented meant the opposite."
+    def __str__(self):
+        return self.text
     
+    @property
+    def imageURL(self):
+        try:
+            img = self.image.url
+        except:
+            img = ''
+        return img
  
