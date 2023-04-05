@@ -149,9 +149,9 @@ def uploads(request, pk):
     return render(request, 'App/uploads.html', context)
         
         
-def comments(request, pk, pkr):
-    user = User.objects.get(id=pk)
-    profile = Profile.objects.get(id=pk)
+def comments(request, pkm, pk, pkr):
+    user = User.objects.get(id=pkm)
+    profile = Profile.objects.get(id=pkm)
     post = Image.objects.get(id=pkr)
     replies = post.comment_set.all()
     count = replies.count()
@@ -161,7 +161,7 @@ def comments(request, pk, pkr):
             image = post,
             text = request.POST.get('text'),
         )   
-        return redirect('comments', pk = user.id, pkr = post.id,)
+        return redirect('comments', pkm = user.id, pk = post.user.id, pkr = post.id,)
         
     context = {'post': post, 'user': user, 'replies': replies, 'count': count, 'profile': profile,}
     return render(request, 'App/comments.html', context, )
