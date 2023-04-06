@@ -30,19 +30,80 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 
 <body>
-    <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
-        <h3>Create your Profile </h3><br>
-    <div>
-        <form method="POST" action=""  enctype="multipart/form-data">
     
-            {% csrf_token %}
-            {{form.as_p}}
-			<input type="submit" class="btn btn-primary submit mb-4" value=Submit />
+    
+    <div>
+		<style >
+			.form-container {
+			  display: flex;
+			  flex-direction: column;
+			  align-items: center;
+			  justify-content: center;
+			  
+			  background-color: #f7e7ce; /* change background color to something sweet and attractive */
+			}
+			
+			.form-container form {
+			  display: flex;
+			  flex-direction: column;
+			  align-items: center;
+			  justify-content: center;
+			  width: 70%; /* increase width to widen the form */
+			  max-width: 600px; /* set a maximum width to prevent the form from getting too wide on larger screens */
+			  padding: 20px;
+			  background-color: #fff;
+			  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+			  border-radius: 10px;
+			}
+			
+			.form-container label {
+			  margin-bottom: 10px;
+			}
+			
+			.form-container input[type="text"],
+			.form-container input[type="email"],
+			.form-container input[type="number"],
+			.form-container textarea {
+			  width: 100%;
+			  padding: 10px;
+			  margin-bottom: 20px;
+			  border: none;
+			  border-radius: 5px;
+			  background-color: #f2f2f2;
+			}
+			
+			.form-container input[type="submit"] {
+			  background-color: #4CAF50;
+			  color: white;
+			  border: none;
+			  border-radius: 5px;
+			  padding: 10px 20px;
+			  cursor: pointer;
+			  font-size: 16px;
+			}
+			
+			.form-container input[type="submit"]:hover {
+			  background-color: #3e8e41;
+			}
+			
+			.form-container p {
+			  font-size: 14px;
+			  text-align: center;
+			  margin-top: 20px;
+			}
+			</style>
+			
+			<div class="form-container">
+				<h3>Create your Profile </h3><br>
 
-            <!-- <input type="submit" value="Submit" />-->
-        </form>
-    </div>
-</div>
+			  <form method="POST" action=""  enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<input type="submit" class="btn btn-primary submit mb-4" value="Submit" />
+			  </form>
+			</div>
+			
+		</div>
 
     <script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
 	<!-- //js -->

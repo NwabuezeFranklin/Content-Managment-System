@@ -179,6 +179,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-lg-8 left-blog-info-w3layouts-agileits text-center">
 
                 <!--//silder-->
+					<h3> Your Posts </h3>
             
                 <div class="blog-girds-sec">
                     <div class="row">
@@ -238,7 +239,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <a href="{% url 'deleteProfile' profiles.id  %}"> Delete </a>
                                     {% endif %}
                                     <span>
-										<a href="{% url 'uploads' p.user.id %}"> by {{p.user.username}} {{p.user.id}} {{users.id}}</a><br>
+										<a href="{% url 'uploads' p.user.id %}"> by {{p.user.username}} </a><br>
                                         <i class="far fa-clock"></i> {{p.created|timesince}} ago 
                                     </span>
                                 </div>

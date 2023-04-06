@@ -11,7 +11,7 @@ class Profile(models.Model):
     age = models.IntegerField(blank=True)  
     email = models.EmailField(blank=True, null=True)
     occupation = models.CharField(max_length=50, blank=True, null=True)   
-    descriptions = models.TextField(blank=True, null=True, )
+    about = models.TextField(blank=True, null=True, )
     is_active = models.BooleanField(default=True)
     #avatar = models.ImageField(upload_to='avatars/')
 
