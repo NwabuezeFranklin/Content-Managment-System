@@ -105,7 +105,7 @@ def myProfile(request, pk):
     context = {'profiles': profiles, 'user': user, 'profile': profile, 'post': post,}
     return render(request, 'App/myProfile.html', context)
     
-@login_required(login_url='loginUser')
+#@login_required(login_url='loginUser')
 def profileList(request,pk):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     
@@ -121,6 +121,24 @@ def profileList(request,pk):
     )
     context = {'profiles': profiles, 'user': user, 'post': post, 'users': users, 'posts': posts, 'contents': contents}
     return render(request, 'App/profileList.html', context)
+
+def guestProfile(request):
+    #if request.user.is_authenticated():
+        # If the user already has a profile, redirect to their profile page
+        #return redirect('profileList', user.id)
+    
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    
+    profiles = Profile.objects.all()
+    user = User.objects.all()
+    post = Image.objects.all()
+    contents = Image.objects.filter(
+        Q(user__username__icontains=q) |
+        Q(topic__icontains=q)
+            
+    )
+    context = {'profiles': profiles, 'user': user, 'post': post, 'contents': contents}
+    return render(request, 'App/guestProfile.html', context)
 
 
 def update(request, pk):

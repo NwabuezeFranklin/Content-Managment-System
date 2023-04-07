@@ -1,14 +1,5 @@
 
-<!--{% if request.user.is_authenticated %}
-<h3> Hello {{request.user}} </h3>
-<a href="{% url 'logoutUser' %}">Logout</a>
-<a href="{% url 'myProfile' user.id %}">  Profile</a>
-{% else %}
 
-<a href="{% url 'loginUser' %}">   Login</a>
-
-{% endif %}
-<a href="{% url 'profileList' user.id %}"> View Other profiles</a> -->
 
 <!DOCTYPE html>
 {% load  static %}
@@ -40,8 +31,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 	    rel="stylesheet">
 </head>
-
-<body>
 	
 	<!--Header-->
 	<!-- my_template.html -->
@@ -162,11 +151,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="nav-item">
 							<a class="nav-link" href="">About</a>
 						</li>
+						{% if request.user.is_authenticated %}
 						<li class="nav-item">
 							<a class="nav-link" href="{% url 'myProfile' user.id %}">Profile</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{% url 'profileList' user.id %}">Blog</a>
+							{% else %}
+							<a class="nav-link" href="{% url 'guestProfile' %}">Blog</a>
+
+							{% endif %}
 						</li>
 
 					</ul>
