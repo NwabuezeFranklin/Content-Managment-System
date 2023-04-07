@@ -77,7 +77,7 @@
 		</div>
 		<div class="profile-field">
 			<label>About:</label>
-			<p>{{profile.descriptions}}</p>
+			<p>{{profile.about}}</p>
 		</div>
         {% if request.user == profile.user %}
         <h5><a href="{% url 'update' profile.id %}"> Edit </a></h5>
