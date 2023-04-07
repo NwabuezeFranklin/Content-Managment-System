@@ -8,7 +8,7 @@ class Profile(models.Model):
     image = models.ImageField(null=True, blank=True, default="default.jpg")
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    age = models.IntegerField(blank=True)  
+    age = models.IntegerField(blank=True, null=True)  
     email = models.EmailField(blank=True, null=True)
     occupation = models.CharField(max_length=50, blank=True, null=True)   
     about = models.TextField(blank=True, null=True, )

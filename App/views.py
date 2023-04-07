@@ -49,13 +49,17 @@ def registerUser(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            # Create a new profile object and associate it with the new user
+            profile = Profile.objects.create(user=user)
+            profile.user_id = user.id
+            profile.save()
             login(request, user)
             return redirect('profile')
         else:
             messages.error(request, 'An error occurred during registration')
         
     context = {'form': form}
-    return render(request, 'App/login.html', context)     
+    return render(request, 'App/login.html', context)
 
 
 def home(request):
