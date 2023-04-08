@@ -3,84 +3,96 @@
 {% block content %}
 <title>User Profile Page</title>
 	<style>
-		body {
+		 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			font-family: Arial, sans-serif;
 			background-color: #f2f2f2;
 			padding: 20px;
-		}
-		h1 {
-			font-size: 32px;
-			margin-top: 0;
-		}
-		.profile-info {
+			height: 100vh;
+		  }
+		  
+		  .profile-info {
 			background-color: #fff;
 			padding: 20px;
 			border-radius: 5px;
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 			margin-bottom: 20px;
-		}
-		.profile-picture {
+			max-width: 600px;
+			margin: 0 auto;
+		  }
+		  
+		  .profile-picture {
 			width: 150px;
 			height: 150px;
 			border-radius: 50%;
 			display: block;
 			margin: 0 auto;
-		}
-		.profile-header {
+		  }
+		  
+		  .profile-header {
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			flex-direction: column;
 			padding-bottom: 20px;
 			border-bottom: 1px solid #ccc;
-		}
-		.profile-header h1 {
+		  }
+		  
+		  .profile-header h1 {
 			margin-top: 20px;
 			margin-bottom: 5px;
-		}
-		.profile-header p {
+		  }
+		  
+		  .profile-header p {
 			margin-top: 0;
-		}
-		.profile-field {
+		  }
+		  
+		  .profile-field {
 			margin-bottom: 10px;
-		}
-		.profile-field label {
+		  }
+		  
+		  .profile-field label {
 			display: block;
 			font-weight: bold;
 			margin-bottom: 5px;
-		}
-		.profile-field p {
+		  }
+		  
+		  .profile-field p {
 			margin: 0;
-		}
+		  }
+		  
 	</style>
     <div class="profile-info">
 		<div class="profile-header">
-			<img src="{{profiles.image.url}}" alt="Profile Picture" class="profile-picture">
-			<h1>{{profiles}} ({{profiles.user}})</h1>
-			<p>{{profiles.occupation}}</p>
+			<img src="{{profile.image.url}}" alt="Profile Picture" class="profile-picture">
+			<h1>{{profile}} ({{profile.user}})</h1>
+			<p>{{profile.occupation}} {{profile.id}} {{user.id}}</p>
+
 		</div>
 		<div class="profile-field">
 			<label>First Name:</label>
-			<p>{{profiles.first_name}}</p>
+			<p>{{profile.first_name}}</p>
 		</div>
 		<div class="profile-field">
 			<label>Last Name:</label>
-			<p>{{profiles.last_name}}</p>
+			<p>{{profile.last_name}}</p>
 		</div>
 		<div class="profile-field">
 			<label>Age:</label>
-			<p>{{profiles.age}}</p>
+			<p>{{profile.age}}</p>
 		</div>
 		<div class="profile-field">
 			<label>Email:</label>
-			<p>{{profiles.email}}</p>
+			<p>{{profile.email}}</p>
 		</div>
 		<div class="profile-field">
 			<label>About:</label>
-			<p>{{profiles.about}}</p>
+			<p>{{profile.about}}</p>
 		</div>
-        {% if request.user == profiles.user %}
-        <h5><a href="{% url 'update' profiles.id %}"> Edit </a></h5>
+        {% if request.user == profile.user %}
+        <h5><a href="{% url 'update' profile.id %}"> Edit </a></h5>
         {% endif %}
 	</div>
 {% endblock %}

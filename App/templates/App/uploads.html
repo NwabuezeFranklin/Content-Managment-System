@@ -1,89 +1,180 @@
 
 {% block content %}
 {% include 'navbar.html'%}
-<title>User Profile Page</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			background-color: #f2f2f2;
-			padding: 20px;
-		}
-		h1 {
-			font-size: 32px;
-			margin-top: 0;
-		}
-		.profile-info {
-			background-color: #fff;
-			padding: 20px;
-			border-radius: 5px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-			margin-bottom: 20px;
-		}
-		.profile-picture {
-			width: 150px;
-			height: 150px;
-			border-radius: 50%;
-			display: block;
-			margin: 0 auto;
-		}
-		.profile-header {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			flex-direction: column;
-			padding-bottom: 20px;
-			border-bottom: 1px solid #ccc;
-		}
-		.profile-header h1 {
-			margin-top: 20px;
-			margin-bottom: 5px;
-		}
-		.profile-header p {
-			margin-top: 0;
-		}
-		.profile-field {
-			margin-bottom: 10px;
-		}
-		.profile-field label {
-			display: block;
-			font-weight: bold;
-			margin-bottom: 5px;
-		}
-		.profile-field p {
-			margin: 0;
-		}
-	</style>
-    <div class="profile-info">
-		<div class="profile-header">
-			<img src="{{profile.image.url}}" alt="Profile Picture" class="profile-picture">
-			<h1>{{profile}} ({{profile.user}})</h1>
-			<p>{{profile.occupation}}</p>
-		</div>
-		<div class="profile-field">
-			<label>First Name:</label>
-			<p>{{profile.first_name}}</p>
-		</div>
-		<div class="profile-field">
-			<label>Last Name:</label>
-			<p>{{profile.last_name}}</p>
-		</div>
-		<div class="profile-field">
-			<label>Age:</label>
-			<p>{{profile.age}}</p>
-		</div>
-		<div class="profile-field">
-			<label>Email:</label>
-			<p>{{profile.email}}</p>
-		</div>
-		<div class="profile-field">
-			<label>About:</label>
-			<p>{{profile.about}}</p>
-		</div>
-        {% if request.user == profile.user %}
-        <h5><a href="{% url 'update' profile.id %}"> Edit </a></h5>
-        {% endif %}
-	</div>
 
+<style>
+	{
+	   display: flex;
+	   justify-content: center;
+	   align-items: center;
+	   font-family: Arial, sans-serif;
+	   background-color: #f2f2f2;
+	   padding: 20px;
+	   height: 100vh;
+	 }
+	 
+	 .profile-info {
+	   background-color: #fff;
+	   padding: 20px;
+	   border-radius: 5px;
+	   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	   margin-bottom: 20px;
+	   max-width: 600px;
+	   margin: 0 auto;
+	 }
+	 
+	 .profile-picture {
+	   width: 150px;
+	   height: 150px;
+	   border-radius: 50%;
+	   display: block;
+	   margin: 0 auto;
+	 }
+	 
+	 .profile-header {
+	   display: flex;
+	   align-items: center;
+	   justify-content: center;
+	   flex-direction: column;
+	   padding-bottom: 20px;
+	   border-bottom: 1px solid #ccc;
+	 }
+	 
+	 .profile-header h1 {
+	   margin-top: 20px;
+	   margin-bottom: 5px;
+	 }
+	 
+	 .profile-header p {
+	   margin-top: 0;
+	 }
+	 
+	 .profile-field {
+	   margin-bottom: 10px;
+	 }
+	 
+	 .profile-field label {
+	   display: block;
+	   font-weight: bold;
+	   margin-bottom: 5px;
+	 }
+	 
+	 .profile-field p {
+	   margin: 0;
+	 }
+	 
+</style>
+<div class="profile-info">
+   <div class="profile-header">
+	   <img src="{{profile.image.url}}" alt="Profile Picture" class="profile-picture">
+	   <h1>{{profile}} ({{profile.user}})</h1>
+	   <p>{{profile.occupation}} {{profile.id}} {{user.id}}</p>
+
+   </div>
+   <div class="profile-field">
+	   <label>First Name:</label>
+	   <p>{{profile.first_name}}</p>
+   </div>
+   <div class="profile-field">
+	   <label>Last Name:</label>
+	   <p>{{profile.last_name}}</p>
+   </div>
+   <div class="profile-field">
+	   <label>Age:</label>
+	   <p>{{profile.age}}</p>
+   </div>
+   <div class="profile-field">
+	   <label>Email:</label>
+	   <p>{{profile.email}}</p>
+   </div>
+   <div class="profile-field">
+	   <label>About:</label>
+	   <p>{{profile.about}}</p>
+   </div>
+   {% if request.user == profile.user %}
+   <h5><a href="{% url 'update' profile.id %}"> Edit </a></h5>
+   {% endif %}
+</div>
+
+	{% if request.user == profile.user %}
+	<div class="article-form">
+		<form method="POST" action="" enctype="multipart/form-data">
+	
+			{% csrf_token %}
+	
+			<div class="form-group">
+				<label for="{{form.topic.id_for_label}}">Topic</label>
+				{{ form.topic }}
+			</div>
+	
+			<div class="form-group">
+				<label for="{{form.article.id_for_label}}">Article</label>
+				{{ form.article }}
+			</div>
+	
+			<div class="form-group">
+				<label for="{{form.image.id_for_label}}">Image</label>
+				{{ form.image }}
+			</div>
+	
+			<input type="submit" value="Submit" class="btn btn-primary" />
+		</form>
+	</div>
+	
+	<style>
+	.article-form {
+		margin: 20px;
+		padding: 20px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		max-width: 600px;
+	}
+	
+	.form-group {
+		margin-bottom: 20px;
+	}
+	
+	label {
+		display: block;
+		margin-bottom: 5px;
+	}
+	
+	input[type="text"], textarea {
+		width: 100%;
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		font-size: 16px;
+		line-height: 1.5;
+		resize: none;
+	}
+	
+	input[type="file"] {
+		margin-top: 5px;
+	}
+	
+	.btn {
+		display: inline-block;
+		padding: 10px 20px;
+		border-radius: 5px;
+		font-size: 16px;
+		font-weight: bold;
+		text-align: center;
+		text-decoration: none;
+		color: #fff;
+		background-color: #007bff;
+		border: 1px solid #007bff;
+		cursor: pointer;
+	}
+	
+	.btn:hover {
+		background-color: #0069d9;
+		border-color: #0062cc;
+	}
+	</style>
+	
+	{% endif %}
+<!--
 <div> {% for post in post %}
     <div class="col-md-6 blog-grid-top">
         <div class="b-grid-top">
@@ -113,17 +204,111 @@
     
     {% endfor %}
 </div>
+-->
+<style>
+    .post-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 15px;
+        margin: 0 -15px;
+    }
+    
+    .post-box {
+        width: calc(25% - 30px);
+        background-color: #fff;
+        margin: 0 15px 30px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.2s ease-out;
+    }
+    
+    .post-box:hover {
+        transform: scale(1.05);
+    }
+    
+    .post-box img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+    
+    .post-box h3 {
+        font-size: 24px;
+        margin: 20px 0 10px;
+    }
+    
+    .post-box p {
+        font-size: 16px;
+        margin: 0 0 20px;
+    }
+    
+    .post-box ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px 20px;
+        font-size: 14px;
+        color: #999;
+        border-top: 1px solid #eee;
+    }
+    
+    .post-box ul li {
+        list-style: none;
+    }
+    
+    .post-box ul li i {
+        margin-right: 5px;
+    }
+    
+    @media screen and (max-width: 1199px) {
+        .post-box {
+            width: calc(33.33% - 30px);
+            margin-bottom: 30px;
+        }
+    }
+    
+    @media screen and (max-width: 991px) {
+        .post-box {
+            width: calc(40% - 30px);
+            margin-bottom: 30px;
+        }
+    }
+    
+    @media screen and (max-width: 500px) {
+        .post-box {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+    }
+</style>
 
-
-
-{% if request.user == profile.user %}
-<div>
-    <form method="POST" action="" enctype="multipart/form-data">
-
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Submit" />
-    </form>
+<div class="post-container">
+    {% for post in post %}
+        <div class="post-box">
+            <a href="{% url 'comments' users.id post.user.id post.id %}">
+                <img src="{{ post.imageURL }}" alt="" />
+            </a>
+            <div class="post-details">
+                <h3>{{ post.topic }}</h3>
+                <p>{{ post.user }}</p>
+                <ul class="blog-icons">
+                    <li>
+                        <i class="far fa-clock"></i>{{ post.created|timesince }} ago
+                    </li>
+                    <li>
+                        <a href="{% url 'comments' users.id post.user.id post.id %}">
+                            <i class="far fa-comment"></i> Comments
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
 </div>
-{% endif %}
+
+
+
 {% endblock %}
