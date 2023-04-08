@@ -1,4 +1,3 @@
-
 {% block content %}
 {% include 'navbar.html'%}
 <!DOCTYPE html>
@@ -7,55 +6,125 @@
 	<title>Article Page</title>
 </head>
 <body>
+<!--
 	<div style="display: flex;">
 		<div style="flex: 2; padding-right: 20px;">
-        <img src="{{post.imageURL}}" style="width: 100%;"/>
+			<img src="{{post.imageURL}}" style="width: 100%;"/>
 		</div>
 		<div style="flex: 3;">
-			<h1 style="font-size: 36px; font-weight: bold;">{{post.topic}}</h1>
-			<p style="font-size: 16px; line-height: 1.5;">{{post.article}}</p>
-	
-
-
-<!-- <a href="{% url 'profileList' user.id %}"> View other profiles </a>
-<h3>{{post.topic}}</h3>
-<img src="{{post.imageURL}}" /> -->
-
-<br><hr>
-{% if request.user.is_authenticated %}
-        			<h2 style="font-size: 24px;">Comments</h2>
-
+			<h1 style="font-size: 36px; font-weight: bold;">{{post.topic}}</h1><br>
+			<p style="font-size: 16px; line-height: 1.5;">{{post.article|linebreaksbr}}</p>
+			<br><hr>
+			{% if request.user.is_authenticated %}
+			<h2 style="font-size: 24px;">Comments</h2>
 			<div style="margin-top: 20px;">
 				<form method="POST" action="" enctype="multipart/form-data">
-                    {% csrf_token %}
-
+					{% csrf_token %}
 					<label for="comment">Comment:</label><br>
-        
 					<textarea id="comment" name="text" rows="4" cols="50"></textarea><br>
-
 					<input type="submit" value="Submit">
 					<br><br>
 				</form>
 			</div>
-        <!--<div class="comment-form">
-            <form method="POST" action="" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="text" name="text" placeholder="Write your comments here">
-            </form>
-        </div> -->
+			{% endif %}
+			{% for reply in replies %}
+			<div>
+				<small><a href="{% url 'myProfile' reply.user.id %}"><img src="{{reply.user.profile.imageURL}}" style="width: 30px; height: 30px; border-radius: 50%;"/><span style="font-weight: bold;">{{reply.user}}</span></a> {{reply.created|timesince}}</small>
+				<p>{{reply.text}}</p>
+				<hr>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+-->
+<style>
+    .article-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .article-image {
+        flex-basis: 50%;
+        padding-right: 20px;
+    }
+    
+    .article-image img {
+        width: 100%;
+        height: auto;
+    }
+    
+    .article-content {
+        flex-basis: 50%;
+    }
+    
+    .article-content h1 {
+        font-size: 36px;
+        font-weight: bold;
+    }
+    
+    .article-content p {
+        font-size: 16px;
+        line-height: 1.5;
+    }
 
-        {% endif %}
+    @media (max-width: 768px) {
+        .article-container {
+            flex-direction: column;
+        }
+        
+        .article-image {
+            padding-right: 0;
+            padding-bottom: 20px;
+        }
+    }
+	@media (max-width: 900px) {
+		.article-container {
+		  flex-wrap: wrap;
+		}
+		
+		.article-image, .article-content {
+		  flex-basis: 100%;
+		}
+		
+		.article-image {
+		  padding-right: 0;
+		  padding-bottom: 20px;
+		}
+	  }
+	  
+</style>
 
-{% for reply in replies %}
-<div>
-    <small><a href="{% url 'myProfile' reply.user.id %}"> <img src="{{reply.user.profile.imageURL}}" style="width: 30px; height: 30px; border-radius: 50%;"/> <span style="font-weight: bold;">{{reply.user}}</span> </a> {{reply.created|timesince}}</small>
+<div class="article-container">
+    <div class="article-image">
+        <img src="{{ post.image.url }}" alt="{{ post.topic }}">
+    </div>
+    <div class="article-content">
+        <h1>{{ post.topic }}</h1><br>
+        <p>{{ post.article|linebreaksbr }}</p>
+		{% if request.user.is_authenticated %}
+		<h2 style="font-size: 24px;">Comments</h2>
+		<div style="margin-top: 20px;">
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+				<label for="comment">Comment:</label><br>
+				<textarea id="comment" name="text" rows="4" cols="50"></textarea><br>
+				<input type="submit" value="Submit">
+				<br><br>
+			</form>
+		</div>
+		{% endif %}
+		{% for reply in replies %}
+		<div>
+			<small><a href="{% url 'myProfile' reply.user.id %}"><img src="{{reply.user.profile.imageURL}}" style="width: 30px; height: 30px; border-radius: 50%;"/><span style="font-weight: bold;">{{reply.user}}</span></a> {{reply.created|timesince}}</small>
+			<p>{{reply.text}}</p>
+			<hr>
+		</div>
+		{% endfor %}
+    </div>
+</div>
 
-    <p >{{reply.text}}</p>
-    <hr>            
-</div>
-{% endfor %}
-</div>
-</div>
+		
+
 </body>
 </html>
 {% endblock %}
