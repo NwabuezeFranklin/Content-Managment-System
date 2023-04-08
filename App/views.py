@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-
+from django.db.models import Count
 # Create your views here.
 
 
@@ -95,11 +95,13 @@ def profile(request):
 
 
 def myProfile(request, pk):
-    profiles = Profile.objects.get(id=pk)
+    profile = Profile.objects.get(id=pk)
     user = User.objects.get(id=pk)
-    profile = Profile.objects.all()
+    profiles = Profile.objects.all()
     users = User.objects.all()
-    post = Image.objects.all()
+    posts = Image.objects.all()
+    post = Image.objects.filter(user=user).annotate(num_articles=Count('user'))
+    
     #image = Image.objects.all()
     #comments = Comment.objects.all()
     context = {'profiles': profiles, 'user': user, 'profile': profile, 'post': post,}
