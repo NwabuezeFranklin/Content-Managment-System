@@ -52,6 +52,15 @@
 
 <!--//banner-->
 	<!--/main-->
+<style>
+	.errors {
+		color: red;
+		font-size: 0.8em;
+		margin-top: 0.5em;
+	}
+</style>
+
+
     {% if page == 'login' %}
 	<section class="main-content-w3layouts-agileits">
 		<div class="container">
@@ -85,15 +94,31 @@
                     <h3 class="tittle">Register your Account</h3>
                     <div class="row inner-sec">
         <div>
-            <form method="post" action="">
-            {% csrf_token %}
-            {{form.as_p}}
-        
-        
-            <!-- <input type="submit" value="Register" /> -->
-			<input type="submit" class="btn btn-primary submit mb-4" value=Register />
-
-            </form>
+			<form method="post" action="">
+				{% csrf_token %}
+				<div class="form-group">
+					<label for="{{ form.username.id_for_label }}">Username:</label>
+					{{ form.username }}
+					<div class="errors">{{ form.username.errors }}</div>
+					<small id="{{ form.username.id_for_label }}Help" class="form-text text-muted">{{ form.username.help_text }}</small>
+				</div>
+				<div class="form-group">
+					<label for="{{ form.password1.id_for_label }}">Password:</label>
+					{{ form.password1 }}
+					<div class="errors">{{ form.password1.errors }}</div>
+					<small id="{{ form.password1.id_for_label }}Help" class="form-text text-muted">{{ form.password1.help_text }}</small>
+				</div>
+				<div class="form-group">
+					<label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+					{{ form.password2 }}
+					<div class="errors">{{ form.password2.errors }}</div>
+					<small id="{{ form.password2.id_for_label }}Help" class="form-text text-muted">{{ form.password2.help_text }}</small>
+				</div>
+				<input type="submit" class="btn btn-primary submit mb-4" value="Register" />
+			</form>
+			
+			
+			
             <p>Already registered? </p>
             <a href="{% url 'loginUser' %}">Login</a>
             {% endif %}

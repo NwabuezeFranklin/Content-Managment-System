@@ -111,8 +111,29 @@
         background-color: #fff;
         color: dodgerBlue;
     }
-    
+    .topic {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        max-width: 50ch;
+      }
+      
+      
 </style>
+<div class="topic">{{ content.topic }}</div>
+
+<script>
+  const topicElement = document.querySelector('.topic');
+  const topicText = topicElement.textContent.trim();
+
+  if (topicText.length > 50) {
+    const shortText = topicText.substring(0, 50) + '...';
+    topicElement.textContent = shortText;
+  }
+</script>
+
 
 <div class="header-container">
     <h1>Top Articles For You</h1><br>

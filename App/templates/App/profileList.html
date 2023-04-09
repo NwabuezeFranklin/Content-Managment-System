@@ -188,7 +188,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="b-grid-top">
                                 <div class="blog_info_center_grid">
                                     <a href="{% url 'comments' users.id posts.user.id posts.id %}">
-                                    <img src="{{baseUrl}}/{{posts.image}}" class="img-fluid" alt="">
+                                    <img width="400" height="400"src="{{baseUrl}}/{{posts.image}}" class="img-fluid" alt="">
                                     </a>
                                 </div>
                                 <br>
@@ -201,7 +201,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </li>
                                 <li class="mx-2">
                                     <a href="{% url 'comments' users.id posts.user.id posts.id %}">
-                                        <i class="far fa-comment"></i>{{count}} </a>
+                                        <i class="far fa-comment"></i>{{post.reply_set.count}} </a>
                                 </li>
                             
                                 
@@ -225,12 +225,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="blog-grids row mb-3">
                             <div class="col-md-5 blog-grid-left">
                                 <a href="{% url 'comments' users.id  p.user.id p.id %}">
-                                    <img src="{{baseUrl}}/{{p.image}}" class="img-fluid" alt="">
+                                    <img  width="400"src="{{baseUrl}}/{{p.image}}" class="img-fluid" alt="">
                                 </a>
                             </div>
                             <div class="col-md-7 blog-grid-right">
                                 <h5>
-                                    <a href="{% url 'comments' users.id p.user.id p.id %}">{{p.topic}} </a>
+                                    <a href="{% url 'comments' users.id p.user.id p.id %}">{{p.topic|slice:":80"}}</a>
                         
                                 </h5>
                                 <div class="sub-meta">
