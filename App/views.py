@@ -63,15 +63,16 @@ def registerUser(request):
 
 
 def home(request):
-     profiles = Profile.objects.all()
-     context = {'profiles': profiles}
-     return render(request, 'home.html', context)
+    
+    profiles = Profile.objects.all()
+    context = {'profiles': profiles, }
+    return render(request, 'home.html', context)
  
  
 def about(request):
-     profiles = Profile.objects.all()
-     context = {'profiles': profiles}
-     return render(request, 'about.html', context)
+    profiles = Profile.objects.all()
+    context = {'profiles': profiles}
+    return render(request, 'about.html', context)
  
  
 
