@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  get_object_or_404
 from .forms import ProfileForm, ImageForm
 from .models import Profile, Image, Comment
 from django.contrib.auth.models import User
@@ -67,6 +67,13 @@ def home(request):
      context = {'profiles': profiles}
      return render(request, 'home.html', context)
  
+ 
+def about(request):
+     profiles = Profile.objects.all()
+     context = {'profiles': profiles}
+     return render(request, 'about.html', context)
+ 
+ 
 
 def profile(request):
     user = request.user
@@ -93,7 +100,7 @@ def profile(request):
     context = {'form': form}   
     return render(request, 'App/profile.html', context)
 
-
+@login_required(login_url='loginUser')
 def myProfile(request, pk):
     profile = Profile.objects.get(id=pk)
     user = User.objects.get(id=pk)
@@ -107,10 +114,16 @@ def myProfile(request, pk):
     context = {'profiles': profiles, 'user': user, 'profile': profile, 'post': post,}
     return render(request, 'App/myProfile.html', context)
     
-#@login_required(login_url='loginUser')
+@login_required(login_url='loginUser')
 def profileList(request,pk):
+
     q = request.GET.get('q') if request.GET.get('q') != None else ''
+    profiler = get_object_or_404(Profile, id=pk)
     
+    if request.user != profiler.user:
+        messages.error(request, 'You are not authorized to view this page')
+        return redirect('home')
+    users = User.objects.get(id=pk)
     profiles = Profile.objects.all()
     user = User.objects.all()
     post = Image.objects.all()
@@ -142,8 +155,13 @@ def guestProfile(request):
     context = {'profiles': profiles, 'user': user, 'post': post, 'contents': contents}
     return render(request, 'App/guestProfile.html', context)
 
-
+@login_required(login_url='loginUser')
 def update(request, pk):
+    profile = get_object_or_404(Profile, id=pk)
+    
+    if request.user != profile.user:
+        messages.error(request, 'You are not authorized to view this page')
+        return redirect('home')
     form = Profile.objects.get(id=pk)
     form_update = ProfileForm(instance=form)
     if request.method == 'POST':
@@ -156,6 +174,11 @@ def update(request, pk):
 
 
 def uploads(request, pk):
+    profiler = get_object_or_404(Profile, id=pk)
+    
+    if request.user != profiler.user:
+        messages.error(request, 'You are not authorized to view this page')
+        return redirect('home')
     form = ImageForm()
     #num = Profile.objects.get(id)
     users = User.objects.get(id=pk)
@@ -174,11 +197,17 @@ def uploads(request, pk):
         
         
 def comments(request, pkm, pk, pkr):
+    profiler = get_object_or_404(Profile, id=pk)
+    
+    if request.user != profiler.user:
+        messages.error(request, 'You are not authorized to view this page')
+        return redirect('home')
     user = User.objects.get(id=pkm)
     profile = Profile.objects.get(id=pkm)
     post = Image.objects.get(id=pkr)
     replies = post.comment_set.all()
-    count = replies.count()
+    posts = Image.objects.all()
+    posts_with_count = [(post, post.comment_set.count()) for post in posts]
     if request.method == 'POST':
         comments = Comment.objects.create(
             user = request.user,
@@ -187,11 +216,16 @@ def comments(request, pkm, pk, pkr):
         )   
         return redirect('comments', pkm = user.id, pk = post.user.id, pkr = post.id,)
         
-    context = {'post': post, 'user': user, 'replies': replies, 'count': count, 'profile': profile,}
+    context = {'post': post, 'user': user, 'replies': replies, 'profile': profile,'posts': posts,'posts_with_count': posts_with_count}
     return render(request, 'App/comments.html', context, )
 
 
 def deleteProfile(request, pk):
+    profiler = get_object_or_404(Profile, id=pk)
+    
+    if request.user != profiler.user:
+        messages.error(request, 'You are not authorized to view this page')
+        return redirect('home')
     profile = Profile.objects.get(id=pk)
     if request.method == 'POST':
         profile.delete()
