@@ -1,0 +1,91 @@
+{% include 'navbar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About - WeBLOG Web App</title>
+  <style>
+    /* CSS styles go here */
+   
+    h1,  h2 {
+      margin: 0;
+      text-align: center;
+    }
+    .logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+    main {
+      padding: 20px;
+    }
+    .team-member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .team-member img {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      /* New rules below */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .team-member img:hover {
+      transform: scale(1.2);
+    }
+    
+    .team-member h3 {
+      margin: 0;
+    }
+    .team-member p {
+      margin: 0;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <br>
+    <h1>About WEBLOG Web App</h1>
+  </header>
+
+  <main>
+    <p>Welcome to My Blog Web App! This is a project we created for ALX Software Engineering School as part of our coursework.</p>
+    <p>The goal of this web app is to provide a platform for bloggers to share their thoughts, ideas, and experiences with the world. Whether you're a seasoned writer or just starting out, we invite you to join our community and start sharing your stories today!</p><br>
+    <h2>Our Team</h2><br>
+    <div class="team-member">
+      <img src="{% static 'images/nwabuezee.jpg' %}" alt="profile.pics">
+      <h3>Nwabueze Franklin</h3>
+      <p>Software Engineer</p>
+      <p>Email: nwafrank2017@gmail.com</p>
+    </div>
+    <div class="team-member">
+      <img src="{% static 'images/femii.jpg' %}" alt="profile.pics">
+      <h3> Opeyemi Alabi</h3>
+      <p> Software Engineer </p>
+      <p>Email: pymfemi@gmail.com </p>
+    </div>
+    <div class="team-member">
+      <img src="https://via.placeholder.com/75x75" alt="Mike Johnson">
+      <h3>Kingsley Nnamdi Abonyi</h3>
+      <p>Student</p>
+      <p>Email: kinabonyi@gmail.com</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 My Blog Web App. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
