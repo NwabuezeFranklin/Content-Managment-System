@@ -103,11 +103,13 @@
 
 <div class="article-container">
     <div class="article-image">
-        <img src="{{ post.image.url }}" alt="{{ post.topic }}">
+        <img src="{{ post.image.url }}" alt="{{ post.topic }}"><br>
     </div>
     <div class="article-content">
+		<br>
+		{{form.media}}
         <h1>{{ post.topic }}</h1><p>Updated at {{post.updated}}</p><br>
-        <p>{{ post.article|linebreaksbr }}</p>
+        <p>{{ post.article|safe }}</p>
 		<hr><br>
 		<h2 style="font-size: 24px;">Comments</h2><br>
 		{% if request.user.is_authenticated %}

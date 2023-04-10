@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'App'
+    'App',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -137,6 +138,9 @@ MEDIA_URL = '/images/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
+CKEDITOR_UPLOAD_PATH = 'static/'
+
 
 
 MEDIA_URL = 'media/'

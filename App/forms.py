@@ -1,6 +1,7 @@
 from .models import Profile, Image
 from django.forms import ModelForm
 from django import forms
+from ckeditor.widgets import CKEditorWidget
 
 class ProfileForm(ModelForm):
     class Meta:
@@ -9,6 +10,7 @@ class ProfileForm(ModelForm):
         exclude = ['user']
 
 class ImageForm(ModelForm):
+    article = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Image
         fields = '__all__'

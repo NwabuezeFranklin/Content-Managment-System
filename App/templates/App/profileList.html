@@ -197,11 +197,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <ul class="blog-icons">
                                 <li>
                                     <a href="">
-                                        <i class="far fa-clock"></i>{{posts.created|timesince|slice:":8"}} ago </a>
+                                        <i class="far fa-clock"></i>{{posts.created|timesince|slice:":6"}} ago </a>
                                 </li>
                                 <li class="mx-2">
                                     <a href="{% url 'comments' users.id posts.user.id posts.id %}">
                                         <i class="fas fa-comment"></i>{{post.reply_set.count}} </a>
+                                </li>
+								<li class="mx-2">
+                                    <a href="{% url 'updatePost' users.id posts.user.id posts.id %}">
+                                        <i class="fas fa-edit"></i>{{post.reply_set.count}} </a>
                                 </li>
 								<li class="mx-2">
                                     <a href="{% url 'deletePost' users.id posts.user.id  posts.id %}">

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -30,7 +31,7 @@ class Image(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True,)
     topic = models.CharField(max_length=200)
     updated = models.DateTimeField(auto_now=True, null=True)
-    article = models.TextField(null=True, blank=True)
+    article = RichTextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
     image = models.ImageField(null=True, blank=True, default="default.jpg")
     
@@ -39,7 +40,7 @@ class Image(models.Model):
         ordering = ['-updated', '-created']
         #ordering = ['updated', 'created'] "this means the last object created will be last, but the similar code not commented meant the opposite."
     def __str__(self):
-        return self.message
+        return self.article
     
     
     
