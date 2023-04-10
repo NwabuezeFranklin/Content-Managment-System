@@ -38,6 +38,10 @@
 	</div>
 -->
 <style>
+	p{
+		color: black;
+		padding: 10px;
+	}
     .article-container {
         display: flex;
         flex-wrap: wrap;
@@ -91,6 +95,9 @@
 		  padding-bottom: 20px;
 		}
 	  }
+	  .reply-text {
+		padding: 10px;
+	  }
 	  
 </style>
 
@@ -99,10 +106,11 @@
         <img src="{{ post.image.url }}" alt="{{ post.topic }}">
     </div>
     <div class="article-content">
-        <h1>{{ post.topic }}</h1><br>
+        <h1>{{ post.topic }}</h1><p>Updated at {{post.updated}}</p><br>
         <p>{{ post.article|linebreaksbr }}</p>
+		<hr><br>
+		<h2 style="font-size: 24px;">Comments</h2><br>
 		{% if request.user.is_authenticated %}
-		<h2 style="font-size: 24px;">Comments</h2>
 		<div style="margin-top: 20px;">
 			<form method="POST" action="" enctype="multipart/form-data">
 				{% csrf_token %}
@@ -115,8 +123,12 @@
 		{% endif %}
 		{% for reply in replies %}
 		<div>
-			<small><a href="{% url 'myProfile' reply.user.id %}"><img src="{{reply.user.profile.imageURL}}" style="width: 30px; height: 30px; border-radius: 50%;"/><span style="font-weight: bold;">{{reply.user}}</span></a> {{reply.created|timesince}}</small>
-			<p>{{reply.text}}</p>
+			<small><a href="{% url 'myProfile' reply.user.id %}">
+				<img src="{{reply.user.profile.imageURL}}" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;" />
+				<span style="font-weight: bold;">{{reply.user}}</span>
+			  </a> {{reply.created|timesince}}</small>
+			  
+			<p class="reply-text">{{reply.text}}</p>
 			<hr>
 		</div>
 		{% endfor %}
