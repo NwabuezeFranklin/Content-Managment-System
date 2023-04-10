@@ -91,9 +91,7 @@
 	   <label>About:</label>
 	   <p>{{profile.about}}</p>
    </div>
-   {% if request.user == profile.user %}
-   <h5><a href="{% url 'update' profile.id %}"> Edit </a></h5>
-   {% endif %}
+   
 </div>
 
 	{% if request.user == profile.user %}

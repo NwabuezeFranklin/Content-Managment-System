@@ -18,6 +18,8 @@ urlpatterns = [
     path('uploads/<str:pk>/', views.uploads, name='uploads'), 
     path('comments/<str:pkm>/<str:pk>/<str:pkr>', views.comments, name='comments'),
     path('deleteProfile/<str:pk>/', views.deleteProfile, name='deleteProfile'),    
+    path('deletePost/<str:pkm>/<str:pk>/<str:pkr>', views.deletePost, name='deletePost'),    
+    
 ]
 
 

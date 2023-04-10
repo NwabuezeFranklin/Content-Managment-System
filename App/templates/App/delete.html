@@ -1,12 +1,26 @@
-{% extends 'home.html' %}
-{% block content %}
-<div>
-    <form method="POST" action="" enctype=multipart/form-data>
+{% include 'navbar.html' %}
 
-        {% csrf_token %}
-        <p>Are you sure you want to delete "{{obj}}?"</p>
-        <a href="{{request.META.HTTP_REFERER}}">Back</a>
-        <input type="submit" value="Confirm" />
+
+
+{% block content %}
+<br><br>
+<div class="d-flex align-items-center justify-content-center h-100">
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Delete {{ obj.topic }}</h4>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="" enctype="multipart/form-data">
+          {% csrf_token %}
+          <p>Are you sure you want to delete "{{ obj.topic }}"?</p>
+          <div class="form-group d-flex justify-content-center">
+            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-secondary mr-2">Cancel</a>
+            <input type="submit" class="btn btn-danger" value="Delete" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-</form>
-{% endblock  %}
+{% endblock %}

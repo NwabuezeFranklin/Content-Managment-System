@@ -198,17 +198,12 @@ def uploads(request, pk):
         
         
 def comments(request, pkm, pk, pkr):
-    profiler = get_object_or_404(Profile, id=pk)
-    
-    if request.user != profiler.user:
-        messages.error(request, 'You are not authorized to view this page')
-        return redirect('home')
+   
     user = User.objects.get(id=pkm)
     profile = Profile.objects.get(id=pkm)
     post = Image.objects.get(id=pkr)
     replies = post.comment_set.all()
     posts = Image.objects.all()
-    posts_with_count = [(post, post.comment_set.count()) for post in posts]
     if request.method == 'POST':
         comments = Comment.objects.create(
             user = request.user,
@@ -217,7 +212,7 @@ def comments(request, pkm, pk, pkr):
         )   
         return redirect('comments', pkm = user.id, pk = post.user.id, pkr = post.id,)
         
-    context = {'post': post, 'user': user, 'replies': replies, 'profile': profile,'posts': posts,'posts_with_count': posts_with_count}
+    context = {'post': post, 'user': user, 'replies': replies, 'profile': profile,'posts': posts,}
     return render(request, 'App/comments.html', context, )
 
 
@@ -232,3 +227,18 @@ def deleteProfile(request, pk):
         profile.delete()
         return redirect('profileList')
     return render(request, 'App/delete.html', {'obj': profile})
+
+def deletePost(request, pkm, pk, pkr):
+    profiler = get_object_or_404(Profile, id=pkm)
+    
+    if request.user != profiler.user:
+        messages.error(request, 'You are not authorized to view this page')
+        return redirect('home')
+    user = User.objects.get(id=pkm)
+    profile = Profile.objects.get(id=pkm)
+    image = Image.objects.get(id=pkr)
+    if request.method == 'POST':
+        image.delete()
+        return redirect('profileList', pk = user.id)
+    return render(request, 'App/delete.html', {'obj': image})
+
