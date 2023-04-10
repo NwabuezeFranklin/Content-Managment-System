@@ -173,13 +173,8 @@ def update(request, pk):
     context = {'form_update': form_update}   
     return render(request, 'App/update.html', context)
 
-
+@login_required(login_url='loginUser')
 def uploads(request, pk):
-    profiler = get_object_or_404(Profile, id=pk)
-    
-    if request.user != profiler.user:
-        messages.error(request, 'You are not authorized to view this page')
-        return redirect('home')
     form = ImageForm()
     #num = Profile.objects.get(id)
     users = User.objects.get(id=pk)
@@ -195,7 +190,23 @@ def uploads(request, pk):
             return redirect('profileList', pk=users.id)
     context = {'form': form, 'post':post, 'profile': profile, 'users': users}
     return render(request, 'App/uploads.html', context)
-        
+
+def updatePost(request, pkm, pk, pkr):
+    profile = get_object_or_404(Profile, id=pk)
+    
+    if request.user != profile.user:
+        messages.error(request, 'You are not authorized to view this page')
+        return redirect('home')
+    user = User.objects.get(id=pkm)
+    form = Image.objects.get(id=pkr)
+    form_update = ImageForm(instance=form)
+    if request.method == 'POST':
+        form_update = ImageForm(request.POST, request.FILES, instance=form,)
+        if form_update.is_valid():
+            form_update.save()
+            return redirect('comments',  pkm = user.id, pk = form.user.id, pkr = form.id,)
+    context = {'form_update': form_update}   
+    return render(request, 'App/updatePost.html', context)        
         
 def comments(request, pkm, pk, pkr):
    

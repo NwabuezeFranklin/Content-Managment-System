@@ -1,0 +1,83 @@
+{%  block content %}
+{% include 'navbar.html'%}
+
+	<div class="article-form">
+		<form method="POST" action="" enctype="multipart/form-data">
+	
+			{% csrf_token %}
+            {{ form_update.media }}
+			<div class="form-group">
+				<label for="{{form.topic.id_for_label}}">Topic</label>
+				{{ form_update.topic }}
+			</div>
+	
+			<div class="form-group">
+				<label for="{{form.article.id_for_label}}">Article</label>
+				{{ form_update.article }}
+			</div>
+	
+			<div class="form-group">
+				<label for="{{form.image.id_for_label}}">Image</label>
+				{{ form_update.image }}
+			</div>
+	
+			<input type="submit" value="Submit" class="btn btn-primary" />
+		</form>
+	</div>
+	
+	<style>
+	.article-form {
+		margin: 20px;
+		padding: 20px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		max-width: 600px;
+	}
+	
+	.form-group {
+		margin-bottom: 20px;
+	}
+	
+	label {
+		display: block;
+		margin-bottom: 5px;
+	}
+	
+	input[type="text"], textarea {
+		width: 100%;
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		font-size: 16px;
+		line-height: 1.5;
+		resize: none;
+	}
+	
+	input[type="file"] {
+		margin-top: 5px;
+	}
+	
+	.btn {
+		display: inline-block;
+		padding: 10px 20px;
+		border-radius: 5px;
+		font-size: 16px;
+		font-weight: bold;
+		text-align: center;
+		text-decoration: none;
+		color: #fff;
+		background-color: #007bff;
+		border: 1px solid #007bff;
+		cursor: pointer;
+	}
+	
+	.btn:hover {
+		background-color: #0069d9;
+		border-color: #0062cc;
+	}
+	</style>
+
+
+
+
+{% endblock %}

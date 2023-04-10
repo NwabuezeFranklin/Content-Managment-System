@@ -15,6 +15,8 @@ urlpatterns = [
     path('profileList/<str:pk>', views.profileList, name='profileList'),
     path('guestProfile', views.guestProfile, name='guestProfile'),
     path('update/<str:pk>/', views.update, name='update'),
+    path('updatePost/<str:pkm>/<str:pk>/<str:pkr>', views.updatePost, name='updatePost'),
+    
     path('uploads/<str:pk>/', views.uploads, name='uploads'), 
     path('comments/<str:pkm>/<str:pk>/<str:pkr>', views.comments, name='comments'),
     path('deleteProfile/<str:pk>/', views.deleteProfile, name='deleteProfile'),    
