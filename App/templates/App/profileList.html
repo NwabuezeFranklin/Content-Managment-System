@@ -1,6 +1,7 @@
 
 
 <!DOCTYPE html>
+{% load compress %}
 {% load  static %}
 {% static "images" as baseUrl %}
 <html lang="zxx">
@@ -22,10 +23,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 	</script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	{% compress css %}
 	<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
-        <link href="{% static 'css/single.css'%}" rel='stylesheet' type='text/css' />
+    <link href="{% static 'css/single.css'%}" rel='stylesheet' type='text/css' />
 	<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
 	<link href="{% static 'css/fontawesome-all.css' %}" rel="stylesheet">
+	{% endcompress %}
 	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 	    rel="stylesheet">
 </head>
@@ -247,7 +250,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="about.html">About</a>
+							<a class="nav-link" href="{% url 'about' %}">About</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{% url 'myProfile' users.id %}">Profile</a>
@@ -390,10 +393,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </section>
-<script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
+	{% compress js %}
+	<script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
 	<!-- //js -->
 	<!-- desoslide-JavaScript -->
 	<script src="{% static 'js/jquery.desoslide.js' %}"></script>
+	{% endcompress %}
 	<script>
 		$('#demo1_thumbs').desoSlide({
 			main: {
@@ -460,11 +465,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		});
 	</script>
+	{% compress js %}
 	<script src="{% static 'js/jquery.flexisel.js' %}"></script>
 	<!-- //password-script -->
 	<!--/ start-smoth-scrolling -->
 	<script src="{% static 'js/move-top.js' %}"></script>
 	<script src="{% static 'js/easing.js' %}"></script>
+	{% endcompress %}
 	<script>
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -499,9 +506,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</a>
 
 	<!-- //Custom-JavaScript-File-Links -->
+	{% compress js %}
 	<script src="{% static 'js/bootstrap.js' %}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+	{% endcompress %}
 </body>
 
 </html>

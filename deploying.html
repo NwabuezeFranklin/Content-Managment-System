@@ -1,0 +1,38 @@
+compressing static files procedure
+
+pip install django-compressor
+
+{% load compress %}
+
+{% compress css %}
+<link rel="stylesheet" href="/static/css/style1.css">
+<link rel="stylesheet" href="/static/css/style2.css">
+{% endcompress %}
+
+{% compress js %}
+<script src="/static/js/script1.js"></script>
+<script src="/static/js/script2.js"></script>
+{% endcompress %}
+
+
+
+INSTALLED_APPS = [
+    # ...
+    'compressor',
+    # ...
+]
+
+
+python manage.py collectstatic --settings=myapp.settings
+
+This will collect all your static files, including the compressed files, into the STATIC_ROOT directory specified in your settings file
+
+note: If you're not sure what the name of your custom settings module is, you can check your project's manage.py file to see how it's configured.
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Base.settings')
+
+
+pip freeze > requirements.txt
+
+
+WHITENOISE

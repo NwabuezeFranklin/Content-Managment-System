@@ -5,7 +5,7 @@
 <head>
 	<title>Article Page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<style>
@@ -29,8 +29,8 @@
 		}
 
 		.article-content h1 {
-			font-size: 36px;
-			font-weight: bold;
+			color: black;
+			
 		}
 
 		.article-content p {
@@ -77,9 +77,11 @@
 				<img src="{{ post.image.url }}" alt="{{ post.topic }}" class="img-responsive">
 			</div>
 			<div class="col-sm-6 article-content">
-				<h1>{{ post.topic }}</h1>
-				<p>Updated at {{post.updated}}</p>
+				<h1>{{ post.topic }}</h1><br>
+				<p>Updated at {{post.updated|date:"F j, Y"}}</p><br>
+				{% if post.article %}
 				<p>{{ post.article|safe }}</p>
+				{% endif %}
 				<hr>
 				<h2 style="font-size: 24px;">Comments</h2>
 				<br>
