@@ -1,6 +1,7 @@
 
 {% block content %}
 {% include 'navbar.html'%}
+<h5>To make a successful Upload all fields are required</h5>
 
 {% if request.user == profile.user %}
 <div class="container-fluid">
@@ -15,7 +16,7 @@
             {{ form.topic }}
           </div>
           <div class="form-group">
-            <label for="{{form.article.id_for_label}}">Article</label>
+            <label for="{{form.article.id_for_label}}" >Article</label>
             {{ form.article }}
           </div>
           <div class="form-group">
@@ -29,6 +30,10 @@
   </div>
 </div>
 <style>
+  h5{
+    text-align: center;
+    color:green;
+  }
   .article-form {
     margin: 20px;
     padding: 20px;
