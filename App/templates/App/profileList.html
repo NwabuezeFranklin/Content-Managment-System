@@ -304,7 +304,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="b-grid-top">
                                 <div class="blog_info_center_grid">
                                     <a href="{% url 'comments' users.id posts.user.id posts.id %}">
-                                    <img width="400" height="400"src="{{baseUrl}}/{{posts.image}}" class="img-fluid" alt="">
+                                    <img width="400" height="300"src="{{baseUrl}}/{{posts.image}}" class="img-fluid" alt="">
                                     </a>
                                 </div>
                                 <br>
@@ -313,7 +313,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <ul class="blog-icons">
                                 <li>
                                     <a href="">
-                                        <i class="far fa-clock"></i>{{posts.created|timesince|slice:":6"}} ago </a>
+                                        <i class="far fa-clock"></i>{{posts.created|timesince}} ago </a>
                                 </li>
                                 <li class="mx-2">
                                     <a href="{% url 'comments' users.id posts.user.id posts.id %}">

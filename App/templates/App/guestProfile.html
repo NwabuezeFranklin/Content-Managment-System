@@ -152,7 +152,7 @@
         <a href="{% url 'loginUser' %}"><img src="{% if content.image %}{% static 'images/' %}{{ content.image }}{% else %}{% static 'images/default.jpg' %}{% endif %}" alt="{{ content.topic }}"></a>
         <div class="text">
             <div class="topic">{{ content.topic }}</div>
-            <div class="article">{{ content.article|default:''|slice:":130" }}...</div>
+            <div class="article">{{ content.article|safe|default:''|slice:":130" }}...</div>
             <a href="{% url 'myProfile' content.user.id %}"><div class="user">By {{ content.user }}</div></a>
         </div>
     </div>
