@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+{% load compress %}
 {% load  static %}
 {% static "images" as baseUrl %}
 
@@ -23,162 +24,180 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	{% compress css %}
 	<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
-        <link href="{% static 'css/single.css'%}" rel='stylesheet' type='text/css' />
+    <link href="{% static 'css/single.css'%}" rel='stylesheet' type='text/css' />
 	<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
 	<link href="{% static 'css/fontawesome-all.css' %}" rel="stylesheet">
+	{% endcompress %}
 	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 	    rel="stylesheet">
 </head>
 	
 	<!--Header-->
 	<!-- my_template.html -->
-{% if messages %}
-<style>
-	.flash-message-container {
-		position: fixed;
-		top: 20%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		z-index: 999;
-		padding: 20px;
-		background-color: #fff;
-		border: 2px solid #ccc;
-		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-	}
+	{% if messages %}
+	<style>
+		.flash-message-container {
+			position: fixed;
+			top: 40%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 999;
+			padding: 10px;
+			background-color: #fff;
+			border: 2px solid #ccc;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+			font-size: 14px;
+		}
+	
+		.flash-message-container .messages {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+	
+		.flash-message-container .messages li {
+			margin-bottom: 5px;
+			padding: 5px;
+			border: 2px solid #ccc;
+			border-radius: 5px;
+			color: #333;
+		}
+	
+		.flash-message-container .messages li.success {
+			border-color: #4CAF50;
+			color: #4CAF50;
+		}
+	
+		.flash-message-container .messages li.error {
+			border-color: #F44336;
+			color: #F44336;
+		}
+	
+		.flash-message-container .messages li.warning {
+			border-color: #FFC107;
+			color: #FFC107;
+		}
+	
+		.flash-message-container .messages li.info {
+			border-color: #2196F3;
+			color: #2196F3;
+		}
+	
+	</style>
+	
+		<div class="flash-message-container">
+			<ul class="messages">
+				{% for message in messages %}
+					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+	
 
-	.flash-message-container .messages {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
 
-	.flash-message-container .messages li {
-		margin-bottom: 10px;
-		padding: 10px;
-		border: 2px solid #ccc;
-		border-radius: 5px;
-		color: #333;
-	}
-
-	.flash-message-container .messages li.success {
-		border-color: #4CAF50;
-		color: #4CAF50;
-	}
-
-	.flash-message-container .messages li.error {
-		border-color: #F44336;
-		color: #F44336;
-	}
-
-	.flash-message-container .messages li.warning {
-		border-color: #FFC107;
-		color: #FFC107;
-	}
-
-	.flash-message-container .messages li.info {
-		border-color: #2196F3;
-		color: #2196F3;
-	}
-
-</style>
-
-    <div class="flash-message-container">
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-{% endif %}
-
-
-<header>
-	<div class="top-bar_sub_w3layouts container-fluid">
-		<div class="row">
-			<div class="col-md-4 logo text-left">
-				<a class="navbar-brand" href="{% url 'home' %}">
-					<i class="fab fa-linode"></i> Weblog</a>
-			</div>
-			<div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
-				{% if request.user.is_authenticated %}
-				<h3><span>Welcome Back {{user.username}} </span></h3>
-				
-				<span>
-					<a href="{% url 'myProfile' user.id %}">
-						<i class="far fa-user"></i> Profile </a>
-				</span>
-
-				<span>
-					<a href="{% url 'profileList' user.id %}">
-						<i class="far fa-newspaper"></i> Blog Posts </a>
-				</span>
-
+	<header>
+		<div class="top-bar_sub_w3layouts container-fluid">
+			<div class="row">
+				<div class="col-md-4 logo text-left">
+					<a class="navbar-brand" href="{% url 'home' %}">
+						<i class="fab fa-linode"></i> Weblog</a>
+				</div>
+				<div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+					{% if request.user.is_authenticated %}
+					<h3><span>Welcome Back {{user.username}}</span></h3>
+					
+	
+					<span>
+						<a href="{% url 'myProfile' user.id %}">
+							<i class="far fa-user"></i> Profile </a>
+					</span>
+	
+					<span>
+						<a href="{% url 'profileList' user.id %}">
+							<i class="fas fa-newspaper"></i> Blog Posts </a>
+						</span>
+		   
+				</div>
 				<div class="col-md-4 log-icons text-right">
 					<span>
 						<a href="{% url 'logoutUser' %}">
 							<i class="fas fa-arrow-circle-right"></i> Log out </a>
-					</span>
-				</div>				
-
+						</span>
+					</div>
+	{% else %}
+					<span>
+						<a href="{% url 'loginUser' %}">
+							<i class="fas fa-arrow-circle-left"></i> Login </a>
+						</span>
+					
+				</div>
+				
 			</div>
-			{% else %}
-			
-			<div class="col-md-4 log-icons text-right">
-				<span>
-					<a href="{% url 'loginUser' %}">
-						<i class="fas fa-arrow-circle-left"></i> Login </a>
-				</span>
-
-			</div>
-			{% endif %}
+		</div>
+	{% endif %}
+		<div class="header_top" id="home">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<button class="navbar-toggler navbar-toggler-right mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+				</button>
+	
+	
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'home' %}">Home
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'about' %}">About</a>
+						</li>
+						{% if request.user.is_authenticated %}
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'myProfile' user.id %}">Profile</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'profileList' user.id %}">Blog</a>
+							{% else %}
+							<a class="nav-link" href="{% url 'guestProfile' %}">Blog</a>
+	
+							{% endif %}
+						</li>
+	
+					</ul>
+	
+	
+				</div>
+			</nav>
+	
 		</div>
 	</div>
-
-	<div class="header_top" id="home">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<button class="navbar-toggler navbar-toggler-right mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-			</button>
-
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'home' %}">Home
-							<span class="sr-only">(current)</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'about' %}"> About </a>
-					</li>
-					{% if request.user.is_authenticated %}
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'myProfile' user.id %}">Profile</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'profileList' user.id %}">Blog</a>
-					{% else %}
-						<a class="nav-link" href="{% url 'guestProfile' %}">Blog</a>
-
-					</li>
-					{% endif %}
-				</ul>
-
-			</div>
-		</nav>
-
-	</div>
-</header>
-<!--//header-->
+	</header>
+	<!--//header-->
 	
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	{% compress js %}
     <script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
 	<!-- //js -->
 	<!-- desoslide-JavaScript -->
 	<script src="{% static 'js/jquery.desoslide.js' %}"></script>
-	
+	{% endcompress %}
 
 	<!-- requried-jsfiles-for owl -->
 	<script>
@@ -235,11 +254,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		});
 	</script>
+	{% compress js %}
 	<script src="{% static 'js/jquery.flexisel.js' %}"></script>
 	<!-- //password-script -->
 	<!--/ start-smoth-scrolling -->
 	<script src="{% static 'js/move-top.js' %}"></script>
 	<script src="{% static 'js/easing.js' %}"></script>
+	{% endcompress %}
 	<script>
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -274,8 +295,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</a>
 
 	<!-- //Custom-JavaScript-File-Links -->
+	{% compress js %}
 	<script src="{% static 'js/bootstrap.js' %}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	{% endcompress %}
 
 </body>
 
