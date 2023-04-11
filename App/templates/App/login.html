@@ -1,130 +1,88 @@
 {% include 'navbar.html'%}
 {% block content %}
-<!--{% if page == 'login' %}
-<div>
-    <form method="post" action="">
-    {% csrf_token %}
-    <label>Username:</label>
-    <input type="text" name="username" placeholder="Enter Username" />
-
-    <label>Password:</label>
-    <input type="password" name="password" placeholder="Enter Password" />
-
-    <input type="submit" value="Login" />
-    </form>
-    <p>Haven't signed up yet?</p>
-    <a href="{% url 'registerUser' %}">Sign Up</a>
-
-</div>
-{% else %}
-<div>
-    <form method="post" action="">
-    {% csrf_token %}
-    {{form.as_p}}
-
-
-    <input type="submit" value="Register" />
-    </form>
-    <p>Already registered? </p>
-    <a href="{% url 'loginUser' %}">Login</a>
-
-
-<div class="form-group">
-							  <label for="exampleInputEmail1 mb-2">Username</label>
-							  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" required="">
-							  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-							</div>
-							<div class="form-group">
-							  <label for="exampleInputPassword1 mb-2">Password</label>
-							  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="" required="">
-							</div>
-							<div class="form-check mb-2">
-							  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-							  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-							</div>
-                            <input type="submit" value="Login" />
-							<button type="submit" class="btn btn-primary submit mb-4">Sign In</button>
-							<p><a href="register.html"> Don't have an account?</a></p>
-						  </form>
-</div>
-{% endif %}
-
-
-<!--//banner-->
-	<!--/main-->
 <style>
 	.errors {
 		color: red;
 		font-size: 0.8em;
 		margin-top: 0.5em;
 	}
+	/* Mobile Styles */
+	@media (max-width: 576px) {
+		.inner-sec {
+			margin-top: 1em;
+		}
+		.login {
+			padding: 1em;
+		}
+		.login form {
+			margin: 0;
+		}
+	}
 </style>
 
 
-    {% if page == 'login' %}
-	<section class="main-content-w3layouts-agileits">
-		<div class="container">
-				<h3 class="tittle">Sign In Now</h3>
-				<div class="row inner-sec">
-
-					<div class="login p-5 bg-light mx-auto mw-100">
-					<form method="post" action="">
-                        {% csrf_token %}
-							<div class="form-group">
-                                <label>Username:</label>
-                                <input type="text" name="username" placeholder="Enter Username" />
-
-							
-							</div>
-							<div class="form-group">
-                                <label>Password:</label>
-                                <input type="password" name="password" placeholder="Enter Password" />
-							</div>
-							<div class="form-check mb-2">
-							  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-							  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-							</div>
-							<button type="submit" class="btn btn-primary submit mb-4">Sign In</button>
-							<p><a href="{% url 'registerUser' %}"> Don't have an account?</a></p>
-						  </form>
+{% if page == 'login' %}
+<section class="main-content-w3layouts-agileits">
+	<div class="container">
+		<h3 class="tittle">Sign In Now</h3>
+		<div class="row inner-sec">
+			<div class="login p-5 bg-light mx-auto mw-100">
+				<form method="post" action="">
+					{% csrf_token %}
+					<div class="form-group">
+						<label>Username:</label>
+						<input type="text" name="username" placeholder="Enter Username" />
+					</div>
+					<div class="form-group">
+						<label>Password:</label>
+						<input type="password" name="password" placeholder="Enter Password" />
+					</div>
+					<div class="form-check mb-2">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<label class="form-check-label" for="exampleCheck1">Check me out</label>
+					</div>
+					<button type="submit" class="btn btn-primary submit mb-4">Sign In</button>
+					<p><a href="{% url 'registerUser' %}"> Don't have an account?</a></p>
+				</form>
+			</div>
 		</div>
-        {% else %}
-        <section class="main-content-w3layouts-agileits">
-            <div class="container">
-                    <h3 class="tittle">Register your Account</h3>
-                    <div class="row inner-sec">
-        <div>
-			<form method="post" action="">
-				{% csrf_token %}
-				<div class="form-group">
-					<label for="{{ form.username.id_for_label }}">Username:</label>
-					{{ form.username }}
-					<div class="errors">{{ form.username.errors }}</div>
-					<small id="{{ form.username.id_for_label }}Help" class="form-text text-muted">{{ form.username.help_text }}</small>
-				</div>
-				<div class="form-group">
-					<label for="{{ form.password1.id_for_label }}">Password:</label>
-					{{ form.password1 }}
-					<div class="errors">{{ form.password1.errors }}</div>
-					<small id="{{ form.password1.id_for_label }}Help" class="form-text text-muted">{{ form.password1.help_text }}</small>
-				</div>
-				<div class="form-group">
-					<label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
-					{{ form.password2 }}
-					<div class="errors">{{ form.password2.errors }}</div>
-					<small id="{{ form.password2.id_for_label }}Help" class="form-text text-muted">{{ form.password2.help_text }}</small>
-				</div>
-				<input type="submit" class="btn btn-primary submit mb-4" value="Register" />
-			</form>
-			
-			
-			
+	</div>
+</section>
+{% else %}
+<section class="main-content-w3layouts-agileits">
+	<div class="container">
+		<h3 class="tittle">Register your Account</h3>
+		<div class="row inner-sec">
+			<div class="col-md-6 login p-5 bg-light mx-auto mw-100">
+				<form method="post" action="">
+					{% csrf_token %}
+					<div class="form-group">
+						<label for="{{ form.username.id_for_label }}">Username:</label>
+						{{ form.username }}
+						<div class="errors">{{ form.username.errors }}</div>
+						<small id="{{ form.username.id_for_label }}Help" class="form-text text-muted">{{ form.username.help_text }}</small>
+					</div>
+					<div class="form-group">
+						<label for="{{ form.password1.id_for_label }}">Password:</label>
+						{{ form.password1 }}
+						<div class="errors">{{ form.password1.errors }}</div>
+						<small id="{{ form.password1.id_for_label }}Help" class="form-text text-muted">{{ form.password1.help_text }}</small>
+					</div>
+					<div class="form-group">
+						<label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+						{{ form.password2 }}
+						<div class="errors">{{ form.password2.errors }}</div>
+						<small id="{{ form.password2.id_for_label }}Help" class="form-text text-muted">{{ form.password2.help_text }}</small>
+					</div>
+					<input type="submit" class=""btn btn-primary submit mb-4" value="Register" />
+			    </form>
+			</div>
             <p>Already registered? </p>
             <a href="{% url 'loginUser' %}">Login</a>
             {% endif %}
 
 		</div>
 	</div>
-	</section>
+</section>
 	<!--//main-->
 {% endblock content %}
