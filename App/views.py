@@ -169,7 +169,7 @@ def update(request, pk):
         form_update = ProfileForm(request.POST, request.FILES, instance=form,)
         if form_update.is_valid():
             form_update.save()
-            return redirect('myProfile', pk=form.id)
+            return redirect('profileList', pk=form.id)
     context = {'form_update': form_update}   
     return render(request, 'App/update.html', context)
 

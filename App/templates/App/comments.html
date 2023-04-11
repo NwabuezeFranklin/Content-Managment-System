@@ -6,8 +6,6 @@
 	<title>Article Page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<style>
 		.article-container {
 			display: flex;
@@ -17,6 +15,7 @@
 		.article-image {
 			flex-basis: 50%;
 			padding-right: 20px;
+			margin-bottom: 20px;
 		}
 
 		.article-image img {
@@ -30,7 +29,7 @@
 
 		.article-content h1 {
 			color: black;
-			
+			font-size: 28px;
 		}
 
 		.article-content p {
@@ -45,7 +44,15 @@
 
 			.article-image {
 				padding-right: 0;
-				padding-bottom: 20px;
+				margin-bottom: 10px;
+			}
+
+			.article-content {
+				flex-basis: 100%;
+			}
+
+			.article-content h1 {
+				font-size: 24px;
 			}
 		}
 
@@ -61,7 +68,6 @@
 
 			.article-image {
 				padding-right: 0;
-				padding-bottom: 20px;
 			}
 		}
 
@@ -73,10 +79,10 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6 article-image">
+			<div class="col-sm-12 col-md-6 article-image">
 				<img src="{{ post.image.url }}" alt="{{ post.topic }}" class="img-responsive">
 			</div>
-			<div class="col-sm-6 article-content">
+			<div class="col-sm-12 col-md-6 article-content">
 				<h1>{{ post.topic }}</h1><br>
 				<p>Updated at {{post.updated|date:"F j, Y"}}</p><br>
 				{% if post.article %}
@@ -103,15 +109,16 @@
 							<img src="{{reply.user.profile.imageURL}}" style="border-radius: 50%; height: 30px; width: 30px;">
 							{{reply.user.username}}
 							</a>
-							{{reply.timestamp}}
+							{{reply.created|timesince}} ago
 							</small>
 							<p class="reply-text">{{reply.text}}</p>
-				</div>
+				</div><hr>
 				{% endfor %}
 			</div>
 		</div>
 	</div>
 							
 </body>
+
 </html>
 {% endblock %}
