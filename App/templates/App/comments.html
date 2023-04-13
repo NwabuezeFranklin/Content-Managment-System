@@ -80,7 +80,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 col-md-6 article-image">
+				{% if post.image %}
 				<img src="{{ post.image.url }}" alt="{{ post.topic }}" class="img-responsive">
+				{% endif %}
 			</div>
 			<div class="col-sm-12 col-md-6 article-content">
 				<h1>{{ post.topic }}</h1><br>

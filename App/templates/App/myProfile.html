@@ -3,6 +3,10 @@
 {% block content %}
 <title>User Profile Page</title>
 	<style>
+		.link {
+			text-align: center;
+		}
+		
 		 {
 			display: flex;
 			justify-content: center;
@@ -68,7 +72,7 @@
 		<div class="profile-header">
 			<img src="{{profile.image.url}}" alt="Profile Picture" class="profile-picture">
 			<h1>{{profile}} ({{profile.user}})</h1>
-			<p>{{profile.occupation}} {{profile.id}} {{user.id}}</p>
+			<p>{{profile.occupation}}</p>
 
 		</div>
 		<div class="profile-field">
@@ -94,6 +98,7 @@
         {% if request.user == profile.user %}
         <h5><a href="{% url 'update' profile.id %}"> Edit </a></h5>
         {% endif %}
+		<a  class="link" href="{% url 'uploads' profile.id %}"> See {{profile.user}}'s uploads </a>
 	</div>
 {% endblock %}
 

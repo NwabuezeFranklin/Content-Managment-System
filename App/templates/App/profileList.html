@@ -304,7 +304,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="b-grid-top">
                                 <div class="blog_info_center_grid">
                                     <a href="{% url 'comments' users.id posts.user.id posts.id %}">
-                                    <img width="400" height="300"src="{{baseUrl}}/{{posts.image}}" class="img-fluid" alt="">
+									{% if posts.image%}
+                                    <img width="400" height="300"src="{{posts.image.url}}" class="img-fluid" alt="">
+									{% endif %}
                                     </a>
                                 </div>
                                 <br>
@@ -359,7 +361,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="blog-grids row mb-3">
                             <div class="col-md-5 blog-grid-left">
                                 <a href="{% url 'comments' users.id  p.user.id p.id %}">
+									{% if p.image %}
                                     <img  width="400"src="{{baseUrl}}/{{p.image}}" class="img-fluid" alt="">
+									{% endif %}
                                 </a>
                             </div>
                             <div class="col-md-7 blog-grid-right">
@@ -373,7 +377,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <a href="{% url 'deleteProfile' profiles.id  %}"> Delete </a>
                                     {% endif %}
                                     <span>
-										<a href="{% url 'uploads' p.user.id %}"> by {{p.user.username}} </a><br>
+										<a href="{% url 'myProfile' p.user.id %}"> by {{p.user.username}} </a><br>
                                         <i class="far fa-clock"></i> {{p.created|timesince}} ago 
                                     </span>
                                 </div>

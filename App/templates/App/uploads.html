@@ -1,9 +1,10 @@
 
 {% block content %}
 {% include 'navbar.html'%}
-<h5>To make a successful Upload all fields are required</h5>
+
 
 {% if request.user == profile.user %}
+<h5>To make a successful Upload all fields are required</h5>
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-lg-8 col-md-10 col-sm-12">
@@ -201,15 +202,15 @@
     
     @media screen and (max-width: 991px) {
         .post-box {
-            width: calc(40% - 30px);
+            width: calc(30% - 30px);
             margin-bottom: 30px;
         }
     }
     
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 768px) {
         .post-box {
-            width: 100%;
-            margin-bottom: 30px;
+            width: calc(50% - 30px);
+            margin-bottom: 20px;
         }
     }
 </style>
