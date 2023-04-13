@@ -10,9 +10,13 @@ from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
+from django.core.cache import cache
+from django.views.decorators.cache import cache_page
 # Create your views here.
 
 
+
+@cache_page(60 * 15)
 def loginUser(request):
     page = 'login'
     if request.method == 'POST':
@@ -32,7 +36,7 @@ def loginUser(request):
     context = {'page': page}
     return render(request, 'App/login.html', context)
 
-
+@cache_page(60 * 15)
 def logoutUser(request):
     if request.method == 'POST':
         logout(request)
@@ -41,7 +45,7 @@ def logoutUser(request):
     context = {}
     return render(request, 'App/logoutUser.html', context)
 
-            
+@cache_page(60 * 15)           
 def registerUser(request):
     page = 'Register'
     form = UserCreationForm()
@@ -62,6 +66,7 @@ def registerUser(request):
     return render(request, 'App/login.html', context)
 
 
+@cache_page(60 * 15)
 def home(request):
     
     profiles = Profile.objects.all()
@@ -69,6 +74,8 @@ def home(request):
     return render(request, 'home.html', context)
  
  
+ 
+@cache_page(60 * 15)
 def about(request):
     profiles = Profile.objects.all()
     context = {'profiles': profiles}
@@ -101,8 +108,10 @@ def profile(request):
     context = {'form': form}   
     return render(request, 'App/profile.html', context)
 
+
 @login_required(login_url='loginUser')
 def myProfile(request, pk):
+    
     profile = Profile.objects.get(id=pk)
     user = User.objects.get(id=pk)
     profiles = Profile.objects.all()
@@ -114,6 +123,7 @@ def myProfile(request, pk):
     #comments = Comment.objects.all()
     context = {'profiles': profiles, 'user': user, 'profile': profile, 'post': post,}
     return render(request, 'App/myProfile.html', context)
+  
     
 @login_required(login_url='loginUser')
 def profileList(request,pk):
@@ -138,6 +148,8 @@ def profileList(request,pk):
     context = {'profiles': profiles, 'user': user, 'post': post, 'users': users, 'posts': posts, 'contents': contents}
     return render(request, 'App/profileList.html', context)
 
+
+@cache_page(60 * 15)
 def guestProfile(request):
     #if request.user.is_authenticated():
         # If the user already has a profile, redirect to their profile page
@@ -156,6 +168,8 @@ def guestProfile(request):
     context = {'profiles': profiles, 'user': user, 'post': post, 'contents': contents}
     return render(request, 'App/guestProfile.html', context)
 
+
+@cache_page(60 * 15)
 @login_required(login_url='loginUser')
 def update(request, pk):
     profile = get_object_or_404(Profile, id=pk)
@@ -173,6 +187,9 @@ def update(request, pk):
     context = {'form_update': form_update}   
     return render(request, 'App/update.html', context)
 
+
+
+@cache_page(60 * 15)
 @login_required(login_url='loginUser')
 def uploads(request, pk):
     form = ImageForm()
@@ -191,6 +208,8 @@ def uploads(request, pk):
     context = {'form': form, 'post':post, 'profile': profile, 'users': users}
     return render(request, 'App/uploads.html', context)
 
+
+@cache_page(60 * 15)
 def updatePost(request, pkm, pk, pkr):
     profile = get_object_or_404(Profile, id=pk)
     
@@ -207,7 +226,9 @@ def updatePost(request, pkm, pk, pkr):
             return redirect('comments',  pkm = user.id, pk = form.user.id, pkr = form.id,)
     context = {'form_update': form_update}   
     return render(request, 'App/updatePost.html', context)        
-        
+
+
+@cache_page(60 * 15)        
 def comments(request, pkm, pk, pkr):
    
     user = User.objects.get(id=pkm)
@@ -227,6 +248,8 @@ def comments(request, pkm, pk, pkr):
     return render(request, 'App/comments.html', context, )
 
 
+
+
 def deleteProfile(request, pk):
     profiler = get_object_or_404(Profile, id=pk)
     
@@ -238,6 +261,8 @@ def deleteProfile(request, pk):
         profile.delete()
         return redirect('profileList')
     return render(request, 'App/delete.html', {'obj': profile})
+
+
 
 def deletePost(request, pkm, pk, pkr):
     profiler = get_object_or_404(Profile, id=pkm)
