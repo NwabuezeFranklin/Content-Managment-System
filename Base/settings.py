@@ -87,9 +87,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': '7qeWz8J3Sbe2m14KSlKu',
-        'HOST': 'containers-us-west-120.railway.app',
-        'PORT': '8023',       
+        'PASSWORD': 'ek9Ie01GL4KJcPmYGJZK',
+        'HOST': 'containers-us-west-209.railway.app',
+        'PORT': '7154',       
     }
 }
 
@@ -162,6 +162,8 @@ STATICFILES_DIRS = [
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
 CKEDITOR_UPLOAD_PATH = 'static/'
 
 
