@@ -16,7 +16,6 @@ from django.views.decorators.cache import cache_page
 
 
 
-@cache_page(60 * 15)
 def loginUser(request):
     page = 'login'
     if request.method == 'POST':
@@ -36,7 +35,7 @@ def loginUser(request):
     context = {'page': page}
     return render(request, 'App/login.html', context)
 
-@cache_page(60 * 15)
+
 def logoutUser(request):
     if request.method == 'POST':
         logout(request)
@@ -45,7 +44,7 @@ def logoutUser(request):
     context = {}
     return render(request, 'App/logoutUser.html', context)
 
-@cache_page(60 * 15)           
+          
 def registerUser(request):
     page = 'Register'
     form = UserCreationForm()
@@ -66,7 +65,7 @@ def registerUser(request):
     return render(request, 'App/login.html', context)
 
 
-@cache_page(60 * 15)
+
 def home(request):
     
     profiles = Profile.objects.all()
@@ -75,7 +74,7 @@ def home(request):
  
  
  
-@cache_page(60 * 15)
+
 def about(request):
     profiles = Profile.objects.all()
     context = {'profiles': profiles}
@@ -149,7 +148,7 @@ def profileList(request,pk):
     return render(request, 'App/profileList.html', context)
 
 
-@cache_page(60 * 15)
+
 def guestProfile(request):
     #if request.user.is_authenticated():
         # If the user already has a profile, redirect to their profile page
@@ -169,7 +168,7 @@ def guestProfile(request):
     return render(request, 'App/guestProfile.html', context)
 
 
-@cache_page(60 * 15)
+
 @login_required(login_url='loginUser')
 def update(request, pk):
     profile = get_object_or_404(Profile, id=pk)
@@ -188,8 +187,6 @@ def update(request, pk):
     return render(request, 'App/update.html', context)
 
 
-
-@cache_page(60 * 15)
 @login_required(login_url='loginUser')
 def uploads(request, pk):
     form = ImageForm()
@@ -209,7 +206,7 @@ def uploads(request, pk):
     return render(request, 'App/uploads.html', context)
 
 
-@cache_page(60 * 15)
+
 def updatePost(request, pkm, pk, pkr):
     profile = get_object_or_404(Profile, id=pk)
     
@@ -228,7 +225,7 @@ def updatePost(request, pkm, pk, pkr):
     return render(request, 'App/updatePost.html', context)        
 
 
-@cache_page(60 * 15)        
+       
 def comments(request, pkm, pk, pkr):
    
     user = User.objects.get(id=pkm)
