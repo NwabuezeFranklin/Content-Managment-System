@@ -86,7 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 	
 	</style>
-	
+	<div class="alert alert-{{ message.tags}}">
 		<div class="flash-message-container">
 			<ul class="messages">
 				{% for message in messages %}
@@ -94,6 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				{% endfor %}
 			</ul>
 		</div>
+	</div>
 	{% endif %}
 	
 
@@ -199,6 +200,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script src="{% static 'js/jquery.desoslide.js' %}"></script>
 	{% endcompress %}
 
+
+<script>
+    // Remove flash messages after 3 seconds
+    setTimeout(function() {
+        $('.alert').fadeOut('fast');
+    }, 4000);
+</script>
 	<!-- requried-jsfiles-for owl -->
 	<script>
 		$(window).load(function () {
