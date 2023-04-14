@@ -87,9 +87,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'ek9Ie01GL4KJcPmYGJZK',
-        'HOST': 'containers-us-west-209.railway.app',
-        'PORT': '7154',       
+        'PASSWORD': 'sm8NnkgYQAFD309n0ADm',
+        'HOST': 'containers-us-west-119.railway.app',
+        'PORT': '6862',       
     }
 }
 
@@ -153,7 +153,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/images/'
 
 
 STATICFILES_DIRS = [
@@ -169,7 +168,7 @@ CKEDITOR_UPLOAD_PATH = 'static/'
 
 
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 #MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_ROOT = BASE_DIR / 'static/images' 
 
