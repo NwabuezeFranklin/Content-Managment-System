@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%wnrzh)ik)(q%cv_8l2=*-1xy1j_njh4hjvb+wp24mlvznp+jk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['web-production-02f0.up.railway.app', 'localhost']
+ALLOWED_HOSTS = ['web-production-02f0.up.railway.app', '*']
 CSRF_TRUSTED_ORIGINS = ['https://web-production-02f0.up.railway.app']
 
 
@@ -161,7 +161,7 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 CKEDITOR_UPLOAD_PATH = 'static/'
