@@ -165,11 +165,13 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 CKEDITOR_UPLOAD_PATH = 'media/'
+# CKEDITOR_UPLOAD_PATH = 'static/' this could probabaly be my biggest error in production ever
 
 
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_ROOT = BASE_DIR / 'static/images' this could probabaly be my biggest error in production ever
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
