@@ -170,7 +170,7 @@ CKEDITOR_UPLOAD_PATH = 'static/'
 
 MEDIA_URL = '/media/'
 #MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_ROOT = BASE_DIR / 'static/images' 
+MEDIA_ROOT = BASE_DIR / 'media/images' 
 
 
 
