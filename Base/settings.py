@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+import cloudinary_storage
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,6 +45,8 @@ INSTALLED_APPS = [
     'App',
     'ckeditor',
     'compressor',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -180,3 +185,10 @@ MEDIA_ROOT =  BASE_DIR / 'media/images'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dsn4n7d0s',
+    'API_KEY': '244182521457459',
+    'API_SECRET': 'f9REzylHYSarCfXdxJ4WsT6RSkg',
+            
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
