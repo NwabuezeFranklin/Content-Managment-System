@@ -78,11 +78,11 @@
 						<div class="errors">{{ form.password2.errors }}</div>
 						<small id="{{ form.password2.id_for_label }}Help" class="form-text text-muted">{{ form.password2.help_text }}</small>
 					</div>
-					<input type="submit" class=""btn btn-primary submit mb-4" value="Register" />
+					<input type="submit" class=""btn btn-primary submit mb-4" value="Register" /><br>
+					<p>Already registered? </p>
+            <a href="{% url 'loginUser' %}">Login</a>
 			    </form>
 			</div>
-            <p>Already registered? </p>
-            <a href="{% url 'loginUser' %}">Login</a>
             {% endif %}
 
 		</div>

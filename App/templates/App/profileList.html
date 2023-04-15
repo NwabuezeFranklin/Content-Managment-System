@@ -313,10 +313,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <h6>{{posts.topic}}</h6>
                             </div>
                             <ul class="blog-icons">
-                                <li>
-                                    <a href="">
-                                        <i class="far fa-clock"></i>{{posts.created|timesince}} ago </a>
-                                </li>
+                              
                                 <li class="mx-2">
                                     <a href="{% url 'comments' users.id posts.user.id posts.id %}">
                                         <i class="fas fa-comment"></i>{{post.reply_set.count}} </a>
@@ -329,7 +326,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <a href="{% url 'deletePost' users.id posts.user.id  posts.id %}">
                                         <i class="fas fa-trash"> </i></a>
                                 </li>
-                                
+								<li>
+									<a href="">
+										<i class="far fa-clock"></i> {{posts.created|timesince}} ago</a>
+								</li>
                             </ul>
                         </div>
                         {% endfor %}

@@ -100,6 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 	<header>
+		
 		<div class="top-bar_sub_w3layouts container-fluid">
 			<div class="row">
 				<div class="col-md-4 logo text-left">
@@ -107,6 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<i class="fab fa-linode"></i> Weblog</a>
 				</div>
 				<div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+					
 					{% if request.user.is_authenticated %}
 					<h3><span>Welcome Back {{user.username}}</span></h3>
 					
@@ -127,18 +129,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<a href="{% url 'logoutUser' %}">
 							<i class="fas fa-arrow-circle-right"></i> Log out </a>
 						</span>
-					</div>
+						
+				</div>
 	{% else %}
+					
+				</div>
+				<div class="col-md-4 log-icons text-right">
 					<span>
 						<a href="{% url 'loginUser' %}">
 							<i class="fas fa-arrow-circle-left"></i> Login </a>
 						</span>
-					
+						<span>
+							<a href="{% url 'registerUser' %}">
+								<i class="fas fa-arrow-circle-left"></i> Sign up</a>
+						</span>
 				</div>
 				
 			</div>
+			
 		</div>
 	{% endif %}
+	
 		<div class="header_top" id="home">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<button class="navbar-toggler navbar-toggler-right mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
