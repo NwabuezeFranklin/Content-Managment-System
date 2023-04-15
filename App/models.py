@@ -74,3 +74,4 @@ class Comment(models.Model):
             img = ''
         return img
  
+
