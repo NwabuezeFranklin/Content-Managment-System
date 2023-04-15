@@ -270,3 +270,5 @@ def deletePost(request, pkm, pk, pkr):
         return redirect('profileList', pk = user.id)
     return render(request, 'App/delete.html', {'obj': image})
 
+
+
