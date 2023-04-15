@@ -64,11 +64,25 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/images'
 
 
-Create a media folder. also try creating an images folder, though it may seem this is created automatically
+UPLOADING TO CLOUDINARY
+https://www.youtube.com/watch?v=i0ar7W98Osc
+
+settings.py
+
+import cloudinary_storage
 
 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    '######',
+    'cloudinary',
+    'cloudinary_storage',
+]
 
-Add this to your models.py file
-image = models.ImageField(upload_to='images',null=True, blank=True, default="default.jpg")
 
-
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dsn4n7d0s',
+    'API_KEY': '244182521457459',
+    'API_SECRET': 'f9REzylHYSarCfXdxJ4WsT6RSkg',
+            
+}
