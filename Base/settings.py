@@ -95,16 +95,17 @@ DATABASES = {
 
 
 
-#CACHES = {
- #   'default': {
-  #      'BACKEND': 'django_redis.cache.RedisCache',
-   #     'LOCATION': 'redis://default:xFuKApx2dXZn9tUzMMGd@containers-us-west-185.railway.app:5948',
-    #    'OPTIONS': {
-     #       'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-      #  }
-    #}
-#}
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://default:zZrFTZVwwAegnDpz0jQv@containers-us-west-2.railway.app:7779',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
 
+#redis-cli -u redis://default:zZrFTZVwwAegnDpz0jQv@containers-us-west-2.railway.app:7779
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 '''
