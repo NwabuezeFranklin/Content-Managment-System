@@ -84,12 +84,12 @@ DATABASES = {
     'default': {
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'sm8NnkgYQAFD309n0ADm',
-        'HOST': 'containers-us-west-119.railway.app',
-        'PORT': '6862',       
+        'USER': 'root',
+        'PASSWORD': '98SHKGWnB38Jo0tJSCkJ',
+        'HOST': 'containers-us-west-48.railway.app',
+        'PORT': '6342',       
     }
 }
 
@@ -171,7 +171,7 @@ CKEDITOR_UPLOAD_PATH = 'static/'
 
 MEDIA_URL = '/media/'
 #MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_ROOT = BASE_DIR / 'media/images' 
+MEDIA_ROOT =  BASE_DIR / 'media/images'
 
 
 
