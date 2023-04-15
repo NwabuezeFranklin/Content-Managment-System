@@ -114,13 +114,8 @@ def myProfile(request, pk):
     profile = Profile.objects.get(id=pk)
     user = User.objects.get(id=pk)
     profiles = Profile.objects.all()
-    users = User.objects.all()
-    posts = Image.objects.all()
-    post = Image.objects.filter(user=user).annotate(num_articles=Count('user'))
-    
-    #image = Image.objects.all()
-    #comments = Comment.objects.all()
-    context = {'profiles': profiles, 'user': user, 'profile': profile, 'post': post,}
+
+    context = {'profiles': profiles, 'user': user, 'profile': profile,}
     return render(request, 'App/myProfile.html', context)
   
     
