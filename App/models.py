@@ -6,7 +6,7 @@ from ckeditor.fields import RichTextField
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True,)
-    image = models.ImageField(null=True, blank=True, default="default.jpg")
+    image = models.ImageField(upload_to='images',null=True, blank=True, default="default.jpg")
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     age = models.IntegerField(blank=True, null=True)  
@@ -33,7 +33,7 @@ class Image(models.Model):
     updated = models.DateTimeField(auto_now=True, null=True)
     article = RichTextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
-    image = models.ImageField( null=True, blank=True, default="default.jpg")
+    image = models.ImageField(upload_to='images', null=True, blank=True, default="default.jpg")
     
     
     class Meta:
@@ -74,4 +74,3 @@ class Comment(models.Model):
             img = ''
         return img
  
-
