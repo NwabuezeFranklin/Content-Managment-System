@@ -36,3 +36,39 @@ pip freeze > requirements.txt
 
 
 WHITENOISE
+check the webcsite or watch this youtube video.
+https://www.youtube.com/watch?v=OeywgMArAGM&t=206s
+#####
+
+
+Production setting tips.
+
+STATIC_URL = '/static/'
+
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+#CKEDITOR_UPLOAD_PATH = 'media/'
+CKEDITOR_UPLOAD_PATH = 'static/'
+
+
+
+MEDIA_URL = '/media/'
+#MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'media/images'
+
+
+Create a media folder. also try creating an images folder, though it may seem this is created automatically
+
+
+
+Add this to your models.py file
+image = models.ImageField(upload_to='images',null=True, blank=True, default="default.jpg")
+
+
