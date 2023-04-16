@@ -67,19 +67,19 @@ def registerUser(request):
 
 def home(request):
     # Try to get the response from cache
-    response = cache.get('home_view')
+    #response = cache.get('home_view')
 
-    if not response:
+    #if not response:
         # If response is not cached, generate the response
-        profiles = Profile.objects.all()
-        context = {'profiles': profiles, }
+    profiles = Profile.objects.all()
+    context = {'profiles': profiles, }
         #print('from db')
-        response = render(request, 'home.html', context)
+    return  render(request, 'home.html', context)
         
         # Cache the response for 15 minutes
-        cache.set('home_view', response, 60 * 15)
+        #cache.set('home_view', response, 60 * 15)
     #print('from redis')
-    return response
+    
  
  
  
