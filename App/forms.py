@@ -18,4 +18,3 @@ class ImageForm(ModelForm):
             #'profile': forms.TextInput(attrs={'type': 'hidden'})
         #}
         exclude = ['user']
-      
