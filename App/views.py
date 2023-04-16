@@ -15,7 +15,7 @@ from django.views.decorators.cache import cache_page
 # Create your views here.
 
 
-
+@cache_page(60 * 15) # cache for 15 minutes
 def loginUser(request):
     page = 'login'
     if request.method == 'POST':
@@ -65,16 +65,25 @@ def registerUser(request):
     return render(request, 'App/login.html', context)
 
 
-
 def home(request):
-    
-    profiles = Profile.objects.all()
-    context = {'profiles': profiles, }
-    return render(request, 'home.html', context)
- 
- 
- 
+    # Try to get the response from cache
+    response = cache.get('home_view')
 
+    if not response:
+        # If response is not cached, generate the response
+        profiles = Profile.objects.all()
+        context = {'profiles': profiles, }
+        #print('from db')
+        response = render(request, 'home.html', context)
+        
+        # Cache the response for 15 minutes
+        cache.set('home_view', response, 60 * 15)
+    #print('from redis')
+    return response
+ 
+ 
+ 
+@cache_page(60 * 15) # cache for 15 minutes
 def about(request):
     profiles = Profile.objects.all()
     context = {'profiles': profiles}
@@ -110,13 +119,21 @@ def profile(request):
 
 @login_required(login_url='loginUser')
 def myProfile(request, pk):
-    
+    cache_key = f'myProfile_{pk}'
+    cached_response = cache.get(cache_key)
+
+    if cached_response is not None:
+        return cached_response
+
     profile = Profile.objects.get(id=pk)
     user = User.objects.get(id=pk)
     profiles = Profile.objects.all()
 
     context = {'profiles': profiles, 'user': user, 'profile': profile,}
-    return render(request, 'App/myProfile.html', context)
+    response = render(request, 'App/myProfile.html', context)
+
+    cache.set(cache_key, response, 60 * 15)  # cache for 15 minutes
+    return response
   
     
 @login_required(login_url='loginUser')
