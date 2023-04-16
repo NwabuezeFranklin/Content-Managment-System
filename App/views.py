@@ -15,7 +15,7 @@ from django.views.decorators.cache import cache_page
 # Create your views here.
 
 
-@cache_page(60 * 15) # cache for 15 minutes
+
 def loginUser(request):
     page = 'login'
     if request.method == 'POST':
