@@ -149,7 +149,7 @@
 <div class="flex-container">
     {% for content in contents %}
     <div class="flex-item">
-        <a href="{% url 'loginUser' %}"><img src="{% if content.image %} {{ content.image.url }}{% else %}{% static 'images/default.jpg' %}{% endif %}" alt="{{ content.topic }}"></a>
+        <a href="{% url 'loginUser' %}"><img src="{% if content.image %} {{ content.image.url }} {% endif %}" alt="{{ content.topic }}"></a>
         <div class="text">
             <div class="topic">{{ content.topic }}</div>
             <div class="article">{{ content.article|safe|default:''|slice:":130" }}...</div>
