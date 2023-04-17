@@ -228,7 +228,7 @@
 				<ul class="blog-icons">
 					<li>
 						<a href="">
-							<i class="far fa-clock"></i>{{post.created|timesince|slice:":6"}} ago </a>
+							<i class="far fa-clock"></i>{{post.created|timesince}} ago </a>
 					</li>
 					<li class="mx-2">
 						<a href="{% url 'comments' users.id post.user.id post.id %}">

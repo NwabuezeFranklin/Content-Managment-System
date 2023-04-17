@@ -289,3 +289,5 @@ def deletePost(request, pkm, pk, pkr):
 
 
 
+def error(request, exception):
+    return render(request, 'error.html')

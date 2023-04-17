@@ -24,4 +24,4 @@ urlpatterns = [
     
 ]
 
-
+handler404 = 'App.views.error'
