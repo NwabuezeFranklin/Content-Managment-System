@@ -37,6 +37,15 @@
 			line-height: 1.5;
 		}
 
+		.reply-textarea {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+			resize: vertical;
+		  }
+
 		@media (max-width: 768px) {
 			.article-container {
 				flex-direction: column;
@@ -54,6 +63,11 @@
 			.article-content h1 {
 				font-size: 24px;
 			}
+			
+			.reply-textarea {
+				rows: 1;
+				cols: 20;
+			  }
 		}
 
 		@media (max-width: 900px) {
@@ -98,7 +112,7 @@
 					<form method="POST" action="" enctype="multipart/form-data">
 						{% csrf_token %}
 						<label for="comment">Comment:</label><br>
-						<textarea id="comment" name="text" rows="3" cols="35"></textarea><br>
+						<textarea id="comment" name="text" class="reply-textarea" rows="3" cols="35"></textarea><br>
 						<input type="submit" value="Submit">
 						<br><br>
 					</form>
