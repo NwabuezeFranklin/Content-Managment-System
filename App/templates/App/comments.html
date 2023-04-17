@@ -86,7 +86,7 @@
 			</div>
 			<div class="col-sm-12 col-md-6 article-content">
 				<h1>{{ post.topic }}</h1><br>
-				<p>Updated at {{post.updated|date:"F j, Y"}}</p><br>
+				<p>Updated on {{post.updated|date:"F j, Y"}}</p><br>
 				{% if post.article %}
 				<p>{{ post.article|safe }}</p>
 				{% endif %}
@@ -98,7 +98,7 @@
 					<form method="POST" action="" enctype="multipart/form-data">
 						{% csrf_token %}
 						<label for="comment">Comment:</label><br>
-						<textarea id="comment" name="text" rows="4" cols="50"></textarea><br>
+						<textarea id="comment" name="text" rows="3" cols="35"></textarea><br>
 						<input type="submit" value="Submit">
 						<br><br>
 					</form>
