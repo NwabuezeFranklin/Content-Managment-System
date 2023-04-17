@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-%wnrzh)ik)(q%cv_8l2=*-1xy1j_njh4hjvb+wp24mlvznp+jk
 DEBUG = False
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['weblog.up.railway.app','*']
 CSRF_TRUSTED_ORIGINS = ['https://weblog.up.railway.app']
 
 
@@ -195,12 +195,24 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+]
+
+
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+
+WHITENOISE_MANIFEST_STRICT = False
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 
 #CKEDITOR_UPLOAD_PATH = 'media/'
