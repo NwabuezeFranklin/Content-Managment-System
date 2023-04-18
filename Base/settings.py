@@ -214,9 +214,34 @@ WHITENOISE_MANIFEST_STRICT = False
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbarGroups': [
+            {'name': 'basicstyles', 'groups': ['basicstyles']},
+            {'name': 'links', 'groups': ['links']},
+            {'name': 'paragraph', 'groups': ['list', 'blocks']},
+            {'name': 'tools', 'groups': ['tools']},
+            {'name': 'others', 'groups': ['others']},
+            {'name': 'document', 'groups': ['mode']},
+        ],
+        'removeButtons': 'Source,Save,Templates,Find,Replace,Scayt,SelectAll,Form,Radio,TextField,Textarea,Checkbox,Select,Button,ImageButton,HiddenField,CreateDiv',
+        'width': 'auto',
+    },
+}
+
+'''
+CKEDITOR_CONFIGS = {
+'default': {
+    'toolbar': None, #You can change this based on your requirements.
+    'width': 'auto',
+
+          },
+    }
+'''
 
 #CKEDITOR_UPLOAD_PATH = 'media/'
 CKEDITOR_UPLOAD_PATH = 'static/'
+
 
 
 
