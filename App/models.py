@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
-from PIL import Image as PILImage
+
 # Create your models here.
 
 class Profile(models.Model):
@@ -33,20 +33,9 @@ class Image(models.Model):
     updated = models.DateTimeField(auto_now=True, null=True)
     article = RichTextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
-    image = models.ImageField(upload_to='images/', null=True, blank=True, default="default.jpg")
+    image = models.ImageField(upload_to='images', null=True, blank=True, default="default.jpg")
     
     
-    
-    
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        img = PILImage.open(self.image.path)
-
-        if img.width > 800 or img.height > 800:
-            output_size = (800, 800)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
     class Meta:
         ordering = ['-updated', '-created']
         #ordering = ['updated', 'created'] "this means the last object created will be last, but the similar code not commented meant the opposite."
