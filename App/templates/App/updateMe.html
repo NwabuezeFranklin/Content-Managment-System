@@ -1,0 +1,112 @@
+{% include 'navbar.html'%}
+{% block content %}
+<body>
+<div class="form-container">
+    <br><h3> Update  your profile</h3> <br>
+    <form method="POST" action="" enctype="multipart/form-data" >
+
+        {% csrf_token %}
+        
+        <div class="form-row">
+            <label for="{{ form_update.first_name.id_for_label }}">First Name:</label>
+            {{ form_update.first_name }}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form_update.last_name.id_for_label }}">Last Name:</label>
+            {{ form_update.last_name }}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form_update.age.id_for_label }}">Age:</label>
+            {{ form_update.age }}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form_update.email.id_for_label }}">Email:</label>
+            {{ form_update.email }}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form_update.occupation.id_for_label }}">Occupation:</label>
+            {{ form_update.occupation }}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form_update.about.id_for_label }}">About:</label>
+            {{ form_update.about }}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form_update.image.id_for_label }}">Profile Picture:</label>
+            <input type="file" name="{{ form_update.image.name }}" id="{{ form_update.image.id_for_label }}" required />
+        </div>
+    
+        
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+
+<style>
+    
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    .form-container form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 70%; /* increase width to widen the form */
+        max-width: 600px; /* set a maximum width to prevent the form from getting too wide on larger screens */
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        background-color: rgba(230,118,72,255); /* change background color to something sweet and attractive */
+    }
+
+    .form-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .form-row label {
+        width: 30%;
+        margin-right: 10px;
+    }
+
+    .form-row input[type="text"],
+    .form-row input[type="email"],
+    .form-row input[type="number"],
+    .form-row textarea {
+        width: 70%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+    }
+
+    .form-row input[type="file"] {
+        width: 70%;
+        margin-top: 10px;
+    }
+
+    .form-row input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+    }
+</body>
+{% endblock content %}

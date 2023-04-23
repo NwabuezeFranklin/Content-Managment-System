@@ -119,22 +119,13 @@ def profile(request):
 
 @login_required(login_url='loginUser')
 def myProfile(request, pk):
-    cache_key = f'myProfile_{pk}'
-    cached_response = cache.get(cache_key)
-
-    if cached_response is not None:
-        return cached_response
 
     profile = Profile.objects.get(id=pk)
     user = User.objects.get(id=pk)
     profiles = Profile.objects.all()
 
     context = {'profiles': profiles, 'user': user, 'profile': profile,}
-    response = render(request, 'App/myProfile.html', context)
-
-    cache.set(cache_key, response, 60 * 15)  # cache for 15 minutes
-    return response
-  
+    return render(request, 'App/myProfile.html', context)
     
 @login_required(login_url='loginUser')
 def profileList(request,pk):
@@ -194,9 +185,27 @@ def update(request, pk):
         form_update = ProfileForm(request.POST, request.FILES, instance=form,)
         if form_update.is_valid():
             form_update.save()
-            return redirect('profileList', pk=form.id)
+            return redirect('myProfile', pk=form.id)
     context = {'form_update': form_update}   
     return render(request, 'App/update.html', context)
+
+
+@login_required(login_url='loginUser')
+def updateMe(request, pk):
+    profile = get_object_or_404(Profile, id=pk)
+    
+    if request.user != profile.user:
+        messages.error(request, 'You are not authorized to view this page')
+        return redirect('home')
+    form = Profile.objects.get(id=pk)
+    form_update = ProfileForm(instance=form)
+    if request.method == 'POST':
+        form_update = ProfileForm(request.POST, request.FILES, instance=form,)
+        if form_update.is_valid():
+            form_update.save()
+            return redirect('myProfile', pk=form.id)
+    context = {'form_update': form_update}   
+    return render(request, 'App/updateMe.html', context)
 
 
 @login_required(login_url='loginUser')

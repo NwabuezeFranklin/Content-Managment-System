@@ -14,6 +14,8 @@ urlpatterns = [
     path('myProfile/<str:pk>', views.myProfile, name='myProfile'), 
     path('profileList/<str:pk>', views.profileList, name='profileList'),
     path('guestProfile', views.guestProfile, name='guestProfile'),
+    path('updateMe/<str:pk>/', views.updateMe, name='updateMe'),
+    
     path('update/<str:pk>/', views.update, name='update'),
     path('updatePost/<str:pkm>/<str:pk>/<str:pkr>', views.updatePost, name='updatePost'),
     
