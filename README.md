@@ -23,4 +23,3 @@
 ### Third party:
 - CKEditor
 - Whitenoise
-- Compressors
