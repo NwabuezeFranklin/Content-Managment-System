@@ -26,13 +26,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%wnrzh)ik)(q%cv_8l2=*-1xy1j_njh4hjvb+wp24mlvznp+jk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-DEBUG_PROPAGATE_EXCEPTIONS = True
+DEBUG = True
+#DEBUG_PROPAGATE_EXCEPTIONS = True
 
-ALLOWED_HOSTS = ['weblog.up.railway.app','*']
-CSRF_TRUSTED_ORIGINS = ['https://weblog.up.railway.app']
+ALLOWED_HOSTS = []
+#CSRF_TRUSTED_ORIGINS = ['https://weblog.up.railway.app']
 
-
+'''
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -65,7 +65,7 @@ LOGGING = {
         },
     }
 }
-
+'''
 
 # Application definition
 
@@ -121,28 +121,13 @@ WSGI_APPLICATION = 'Base.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'railway',
-        'USER': 'root',
-        'PASSWORD': '98SHKGWnB38Jo0tJSCkJ',
-        'HOST': 'containers-us-west-48.railway.app',
-        'PORT': '6342',       
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',      
     }
 }
 
 
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://default:zZrFTZVwwAegnDpz0jQv@containers-us-west-2.railway.app:7779',
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
-    }
-}
 
 #redis-cli -u redis://default:zZrFTZVwwAegnDpz0jQv@containers-us-west-2.railway.app:7779
 # Password validation
