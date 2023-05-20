@@ -38,6 +38,7 @@ def loginUser(request):
     return render(request, 'App/login.html', context)
 
 
+
 def logoutUser(request):
     if request.method == 'POST':
         logout(request)
