@@ -12,6 +12,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from django.core.cache import cache
 from django.views.decorators.cache import cache_page
+
+
 # Create your views here.
 
 
